@@ -61,8 +61,23 @@ h3 img {
 	color: black;
 }
 
+.title-korean {
+	font-family: "Jua", sans-serif;
+	font-size: 30px;
+	line-height: 3rem;
+	color: black;
+}
+
 .detail {
 	font-family: 'Alef';
+	font-size: 20px;
+	line-height: 30px;
+	margin-left: 10px;
+	color: black;
+}
+
+.detail-korean {
+	font-family: "Jua", sans-serif;
 	font-size: 20px;
 	line-height: 30px;
 	margin-left: 10px;
@@ -160,6 +175,13 @@ h3 img {
 	box-shadow: 0 0 5px white;
 }
 
+#jaeung-img {
+	box-shadow: none;
+	border: none;
+	border-radius: 2rem;
+	filter: drop-shadow(0px 0px 10px black);
+}
+
 .introduce-section .info-contain .intro-detail {
 	margin-inline: 20px;
 	align-content: center;
@@ -207,9 +229,9 @@ h3 img {
 .info-section .stack-info .item .view-detail img {
 	width: 70px;
 	height: 70px;
-	border-radius: 5px;
+	border-radius: 1.2em;
 	background-color: white;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .info-section .stack-info .item .view-detail span {
@@ -244,6 +266,8 @@ h3 img {
 	width: 80%;
 	height: 100%;
 	margin: 0 auto;
+	border-radius: 2rem;
+	filter: drop-shadow(5px 5px 5px black);
 	background-color: #9be6cf;
 }
 
@@ -285,6 +309,7 @@ h3 img {
 
 .info-section .stack-info .item .view-detail .inner-skillinfo .progress-group {
 	display: flex;
+	margin-right: 2.4rem;
 }
 
 .info-section .stack-info .item .view-detail .inner-skillinfo .progress-group .progress-container .progress-bar .percent {
@@ -336,7 +361,8 @@ h3 img {
 	display: flex;
 	width: 100%;
 	justify-content: center;
-	gap: 20px;
+	gap: 40px;
+	margin-left: 4rem;
 }
 
 .description .inner-coment .img-container {
@@ -350,6 +376,8 @@ h3 img {
 	width: inherit;
 	height: inherit;
 	object-fit: contain;
+	border-radius: 2rem;
+	filter: drop-shadow(0px 0px 10px black);
 }
 
 .description .inner-coment .description-container {
@@ -436,8 +464,7 @@ h3 img {
 	gap: 20px;
 }
 
-.card,
-.card-mini {
+.card {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 8px;
@@ -446,6 +473,7 @@ h3 img {
 	height: 20rem;
 	text-align: center;
 	cursor: pointer;
+	filter: drop-shadow(0px 0px 10px #706a8b);
 	transition: transform 0.3s ease;
 }
 
@@ -468,15 +496,20 @@ h3 img {
 	gap: 300px;
 }
 
-.sns-site .card-mini-container .card-mini {
+.card-mini {
 	width: 100px;
 	height: 100px;
-	box-shadow: 8px 8px 3px black, 0px 0px 20px white;
+	border-radius: 8px;
+	padding: 20px;
+	text-align: center;
+	cursor: pointer;
+	transition: transform 0.3s ease;
 }
 
 .sns-site .card-mini-container .card-mini img {
 	width: inherit;
 	height: inherit;
+	filter: drop-shadow(0px 0px 10px white);
 }
 
 .modal-mini {
