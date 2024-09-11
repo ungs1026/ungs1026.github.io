@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>portfolio site</title>
+
+	<!--Google Material Icons-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+	<!--GSAP & ScrollToPlugin-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+		integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js"
+		integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q=="
+		crossorigin="anonymous"></script>
+
+	<!--Fullpage-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+
+	<!-- jQuery (Slick의 의존성) -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Slick CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+	<!-- Slick JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+	<link rel="stylesheet" href="./css/style.css">
+	<script defer src="./js/script.js"></script>
+	<script defer src="./js/modal_mini.js"></script>
+</head>
+
+<body>
+	<div id="fullpage">
+		<!--1. Top Content-->
+		<section class="start-main section">
+			<div class="text-group">
+				<h1 id="title-group">
+					<span class="title-line">Portfolio&nbsp;Site</span><br>
+					<span class="title-line">Jae&nbsp;Ung&nbsp;Seo</span>
+				</h1>
+				<div class="next-page detail">
+					<div class="material-icons">arrow_downward</div>Scroll to the next page.
+				</div>
+			</div>
+		</section>
+
+		<!--2. Introduce-->
+		<section class="introduce-section section">
+			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">INFORMATION</h3>
+			<div class="info-contain">
+				<img src="./source/증명사진_큰버전.jpg" alt="" id="jaeung-img">
+				<div class="intro-detail">
+
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/name_icon.png" alt="name">
+							<div class="title">NAME</div>
+						</div>
+						<div class="detail">JAE UNG SEO</div>
+					</div>
+
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/email_icon.png" alt="name">
+							<div class="title">EMAIL</div>
+						</div>
+						<div class="detail">wodnd565@gmail.com</div>
+					</div>
+
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/phone-icon.png" alt="name">
+							<div class="title">PHONE</div>
+						</div>
+						<div class="detail">010-5657-4813</div>
+					</div>
+				</div>
+				<div class="intro-detail">
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/location_icon.png" alt="name">
+							<div class="title">LOCATION</div>
+						</div>
+						<div class="detail">전라남도 여수시</div>
+					</div>
+
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/birthday_icon.png" alt="name">
+							<div class="title">BIRTHDAY</div>
+						</div>
+						<div class="detail">99.10.26</div>
+					</div>
+
+					<div class="info-group">
+						<div class="icon-title">
+							<img src="./source/icons/school_icon.png" alt="name">
+							<div class="title">SCHOOL</div>
+						</div>
+						<div class="detail">순천대학교</div>
+						<div class="detail">멀티미디어공학전공</div>
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+
+		<!--3. Tchnology Stack-->
+		<section class="info-section section">
+			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">SKILL</h3>
+			<div class="stack-group">
+				<div class="slider-container">
+					<div class="slider-wrapper">
+						<div class="stack-info">
+							<div class="inner-info">
+								<h2>Front</h2>
+								<div class="item">
+									<div class="view-detail">
+										<img src="./source/technology_icon/HTML_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">HTML</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">80%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(0, 80)">check</button>
+											</div>
+										</div>
+									</div>
+									<div class="view-detail">
+										<img src="./source/technology_icon/CSS3_Logo.jpg" style="width: 80px; height: 70px;" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">CSS</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">80%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(1, 80)">check</button>
+											</div>
+										</div>
+									</div>
+									<div class="view-detail">
+										<img src="./source/technology_icon/JS_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">JavaScript</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">60%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(2, 60)">check</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="stack-info">
+							<div class="inner-info">
+								<h2>Back</h2>
+								<div class="item">
+									<div class="view-detail">
+										<img src="./source/technology_icon/PHP_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">PHP</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">70%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(3, 70)">check</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="stack-info">
+							<div class="inner-info">
+								<h2>SQL</h2>
+								<div class="item">
+									<div class="view-detail">
+										<img src="./source/technology_icon/MySQL_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">MySQL</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">80%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(4, 80)">check</button>
+											</div>
+										</div>
+									</div>
+									<div class="view-detail">
+										<img src="./source/technology_icon/phpMyAdmin_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">phpMyAdmin</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">70%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(5, 70)">check</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="stack-info">
+							<div class="inner-info">
+								<h2>Development tool</h2>
+								<div class="item">
+									<div class="view-detail">
+										<img src="./source/technology_icon/vscode_Logo.jpg" alt="">
+										<div class="title">Visual Studio Code </div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="stack-info">
+							<div class="inner-info">
+								<h2>Design</h2>
+								<div class="item">
+									<div class="view-detail">
+										<img src="./source/technology_icon/photoshop_Logo.jpg" alt="">
+										<div class="inner-skillinfo">
+											<div class="title" style="line-height: 40px;">Adobe Photoshop</div>
+											<div class="progress-group">
+												<div class="progress-container">
+													<div class="progress-bar" id="progress-bar">
+														<h6 class="percent">50%</h6>
+													</div>
+												</div>
+												<button onclick="setProgress(6, 50)">check</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<button class="slider-button prev">Prev</button>
+					<button class="slider-button next">Next</button>
+				</div>
+
+			</div>
+		</section>
+
+		<!--4. Descripting-->
+		<section class="description section">
+			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">DESCRIPTION</h3>
+			<div class="inner-coment">
+				<div class="img-container">
+					<img src="./source/증명사진_큰버전.jpg" alt="">
+				</div>
+				<div class="description-container">
+					<div class="title">Introduce & Strength</div><br>
+					<div class="detail">'상상력'&nbsp;&nbsp;&&nbsp;&nbsp;'도전'&nbsp;&nbsp;&&nbsp;&nbsp;'지식에 대한 열정'</div><br>
+					<div class="detail">항상 '새로움'을 중심으로 생각합니다.</div><br>
+					<div class="detail">생각하고 고민하며 문제를 해결했을 때 희열을 즐깁니다.</div><br>
+					<div class="detail">새로운 지식에 대한 거부감 없이 배우는 것을 즐깁니다.</div><br>
+				</div>
+			</div>
+		</section>
+
+		<!--5. Portfolio Site-->
+		<section class="pf-site section">
+			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">PORTFOLIO</h3>
+			<div class="card-container">
+
+				<!--Stardays FanSite-->
+				<div class="card" data-title="Stardays FanSite" data-images='[
+					"./source/portfolio_img/stardays_main.png",
+					"./source/portfolio_img/stardays_news.png",
+					"./source/portfolio_img/stardays_info.png",
+					"./source/portfolio_img/stardays_albums.png"]' data-list-left='[
+					"방송인으로 구성된 버츄얼 그룹 Stardays의 팬 사이트이며 News, Info, Album, Goods 에 대해 알 수 있습니다.",
+					"최신 정보를 빠르게 습득할 수 있고 멤버별 노래 및 정보를 찾아 볼 수 있습니다.", 
+					"HTML과 CSS3, JS를 이용하여 기초적인 문서의 구조를 이해할 수 있었습니다."]' data-list-right='[
+					"Main : 멤버별 방송, X, Youtube 및 단체 곡, 방송 일정에 대해 알 수 있습니다.",
+					"News : 매 월 발생하는 이벤트에 대한 정보 및 사진을 알 수 있습니다.",
+					"Info : 버튼을 통해 멤버별 세부 정보를 알 수 있으며 정보는 최신 노래,  개인정보, 방송 밈에 대해 알 수 있습니다.",
+					"Albums : 단체 곡 및 각 맴버별 최신 노래를 알 수 있습니다."]' data-git="https://github.com/ungs1026/FanSite/tree/main/Stardays">
+					<div class="pf">
+						<h3 class="title" style="color: black; padding-bottom: 0;">Stardays FanSite</h3>
+						<div class="pf-img">
+							<img src="./source/portfolio_img/stardays_total.png" alt="">
+						</div>
+						<div class="press detail" style="font-size: 16px;">Press to read more.</div>
+					</div>
+				</div>
+
+				<!--Stellive Playlist-->
+				<div class="card" data-title="Stellive Playlist" data-images='[
+					"./source/portfolio_img/stellive_main.png",
+					"./source/portfolio_img/stellive_playlist.png",
+					"./source/portfolio_img/stellive_noticeboard.png"]' data-list-left='[
+					"방송인으로 구성된 Stellive의 3기 멤버들로 구성하여 만든 Music Playlist 입니다.",
+					"DB 내부의 Column 값으로 구분하여 원하는 멤버의 노래를 들을 수 있으며, Freeboard는 자유게시판, Notice는 공지사항으로 정보를 알 수 있습니다.",
+					"게시판의 경우 SummerNote와 Bootstrap을 이용하여 디자인 및 구성하였습니다.",
+					"HTML, CSS3, JS, PHP, phpMyAdmin을 사용하여 제작하였습니다.", 
+					"phpMyAdmin을 통해 데이터의 구조 및 테이블을 구성하였습니다.",
+					"테이블은 Albums, Artists, Board, Songs 로 구성되어 있습니다."]' data-list-right='[
+					"Main : 스텔라이브 3기생의 전체 사진 및 멤버를 선택하여 노래를 들을 수 있습니다.",
+					"Playlist : DB에 저장된 카테고리에 따라 멤버의 노래를 순차적으로 재생할 수 있습니다.",
+					"Board : 자유 게시판 및 공지사항으로 정보를 알리거나 획득할 수 있습니다."]' data-git="https://github.com/ungs1026/ShopingMall_Stellive">
+					<div class="pf">
+						<h3 class="title" style="color: black; padding-bottom: 0;">Stellive Playlist</h3>
+						<div class="pf-img">
+							<img src="./source/portfolio_img/stellive_total.png" alt="">
+						</div>
+						<div class="press detail" style="font-size: 16px;">Press to read more.</div>
+					</div>
+				</div>
+
+				<!--Stellive Goods Shop-->
+				<div class="card" data-title="Stellive Goods Shop" data-images='[
+					"./source/portfolio_img/goodsShop_register.png",
+					"./source/portfolio_img/goodsShop_main.png",
+					"./source/portfolio_img/goodsShop_detail.png",
+					"./source/portfolio_img/goodsShop_comunity.png"]' data-list-left='[
+					"Stellive의 Goods Shop으로 정렬 및 세부정보, 게시판을 이용할 수 있습니다.", 
+					"HTML, CSS3, JS, PHP, phpMyAdmin을 사용하여 제작하였습니다.",
+					"게시판의 경우 SummerNote와 Bootstrap을 이용하여 디자인 및 구성하였습니다.",
+					"phpMyAdmin을 통해 데이터의 구조 및 테이블을 구성하였으며, 테이블은 Freeboard, Goods, Users로 구성되어 있습니다."]' data-list-right='[
+					"Register : 로그인 및 계정 생성이 가능하며 위 버튼을 통해 조정할 수 있습니다.",
+					"Main : 멤버 별 사진 및 최신 노래 한곡과 굿즈의 정렬 및 종류를 알 수 있습니다.",
+					"Goods Detail : 굿즈의 사진 정보, 세부 정보, 배송 정보, 반품 정보를 알 수 있습니다.",
+					"Board : 자유롭게 정보 및 의견을 교환할 수 있습니다."]' data-git="https://github.com/ungs1026/FanSite/tree/main/Stardays">
+					<div class="pf">
+						<h3 class="title" style="color: black; padding-bottom: 0;">Stellive Goods Shop</h3>
+						<div class="pf-img">
+							<img src="./source/portfolio_img/goodsShop_register.png" alt="">
+						</div>
+						<div class="press detail" style="font-size: 16px;">Press to read more.</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Git & Notion-->
+		<section class="sns-site section">
+			<h3 class="section-title" style="color: white;"><img src="./source/icons/link_icon.png" alt="ICON">Git & Notion</h3>
+			<div class="card-mini-container">
+
+				<div class="card-mini" data-img="source/technology_icon/github_Logo.jpg" data-link="https://github.com/ungs1026" 
+					data-title="소스코드 및 공부 내용 저장소 입니다."
+					data-list='[
+				"연습 혹은 진행한 프로젝트의 Source, code, text",
+				"공부하며 정리한 파일",
+				"클론코딩의 예시로 사용된 코드"]'>
+					<img src="./source/technology_icon/github_Logo.jpg" alt="">
+				</div>
+				
+				<div class="card-mini" data-img="source/technology_icon/notion_Logo.jpg" data-link="https://www.notion.so/Study-7daa8a57d33946b79616df556f0edd01"
+					data-title="프론트 외에 공부한 내용 저장소 입니다."
+					data-list='[
+				"Operating System에 관하여"]'>
+					<img src="./source/technology_icon/notion_Logo.jpg" alt="">
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!--Modal-->
+	<div class="modal" id="modal">
+		<div class="modal-content" id="modal-content">
+			<span class="close">&times;</span>
+			<h2 id="modal-title" class="title" style="margin-bottom: 0;"></h2>
+
+			<!-- 이미지 슬라이더 -->
+			<div id="modal-slider" class="slider">
+				<!-- 이미지들이 이곳에 추가됩니다. -->
+			</div>
+			<div style="margin: 20px 0 0 0; font-size: 16px;">소개</div>
+			<div class="modal-lists">
+				<ul id="modal-left-list"></ul>
+				<ul id="modal-right-list"></ul>
+			</div>
+			<div class="modal-git-class">
+				<a id="modal-git" href="#" target="_blank">
+					<img src="./source/technology_icon/github_Logo.jpg" alt="git">
+					<div class="title">DETAIL</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!--Modal Mini-->
+	<div class="modal-mini" id="modal-mini">
+		<div class="modal-mini-content" id="modal-mini-content">
+			<span class="close-mini">&times;</span>
+			<a id="modal-mini-link" href="" target="_blank">
+				<img id="modal-mini-img" src="" alt="">
+			</a>
+			<div>
+				<h2 id="modal-mini-title" class="title" style="margin-bottom: 0; list-style-type: none;"></h2>
+				<ul class="detail" id="modal-description-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

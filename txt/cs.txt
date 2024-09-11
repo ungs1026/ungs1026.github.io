@@ -1,0 +1,53 @@
+- background
+https://www.fffuel.co/cccolor/
+
+> body : white
+
+> start : 
+
+> info : complementary tint palette
+
+> skill : complementary shade palette
+
+> introduce : cooler palette
+
+> portfolio site : shade palette
+
+> git / notion : tone palette
+
+font
+
+@import url("https://fonts.googleapis.com/css?family=Agbalumo");
+@import url("https://fonts.googleapis.com/css?family=ADLaM Display");
+@import url("https://fonts.googleapis.com/css?family=Alef");
+
+main-title : 첫 페이지 전체 이름
+font-family: 'Agbalumo;
+
+
+title : 제목 (큰 글자)
+font-family: 'ADLaM Display';
+font-size: 20px;
+line-height: 36px;
+
+detail : 내용 (작은글자)
+font-family: 'Alef';
+font-size: 16px;
+line-height: 30px;
+margin-left: 10px;
+
+
+<div class="info-group">
+	<div class="title">Description</div><br>
+	<div class="detail">'상상력'&nbsp;&nbsp;&&nbsp;&nbsp;'도전'&nbsp;&nbsp;&&nbsp;&nbsp;'지식에 대한 열정'</div><br>
+	<div class="detail">항상 '새로움'을 중심으로 생각합니다.</div><br>
+	<div class="detail">생각하고 고민하며 문제를 해결했을 때 희열을 즐깁니다.</div><br>
+	<div class="detail">새로운 지식에 대한 거부감 없이 배우는 것을 즐깁니다.</div><br>
+</div><br>
+
+// 9.10
+// description 사이트 
+
+// portfolio site => 카드 내부 및 디자인 수정
+
+// git & notion => 아이콘 flowting 및 연결
