@@ -217,5 +217,6 @@ function floatingObject(selector, delay, size) {
     }
   )
 }
+floatingObject('.floating', 0.5, 15)
 floatingObject('.card-mini1', 1, 30)
 floatingObject('.card-mini2', .5, 30)
