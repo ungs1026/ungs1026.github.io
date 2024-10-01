@@ -87,7 +87,7 @@ h3 img {
 /*===========top===========*/
 .start-main {
 	position: relative;
-	background: linear-gradient(black, gray);
+	background: linear-gradient(black, white);
 }
 
 .start-main .text-group {
@@ -147,12 +147,18 @@ h3 img {
 }
 
 /*===========info-section===========*/
+
 .introduce-section {
 	width: 80%;
 	height: 500px;
 	margin: 0 auto;
 	padding-left: 7rem;
-	background-color: #E6F7FF;
+	background-color: white;
+}
+
+.information {
+	box-shadow: 0 0 10 black;
+	border-radius: 2rem;
 }
 
 .introduce-section h3 {
@@ -179,7 +185,7 @@ h3 img {
 	box-shadow: none;
 	border: none;
 	border-radius: 2rem;
-	filter: drop-shadow(0px 0px 10px black);
+	filter: drop-shadow(0px 0px 10px #cdb8f1);
 }
 
 .introduce-section .info-contain .intro-detail {
@@ -206,7 +212,7 @@ h3 img {
 
 /*===========info-section===========*/
 .info-section {
-	background-color: #559f89;
+	background-color: white;
 }
 
 
@@ -231,6 +237,7 @@ h3 img {
 	height: 70px;
 	border-radius: 1.2em;
 	background-color: white;
+	filter: drop-shadow(0 0 5px black);
 	object-fit: contain;
 }
 
@@ -267,8 +274,8 @@ h3 img {
 	height: 100%;
 	margin: 0 auto;
 	border-radius: 2rem;
-	filter: drop-shadow(5px 5px 5px black);
-	background-color: #9be6cf;
+	filter: drop-shadow(0px 0px 10px #cdb8f1);
+	background-color: white;
 }
 
 .inner-info h2 {
@@ -285,10 +292,11 @@ h3 img {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	background-color: #004736;
+	background-color: #5996FF;
 	border-radius: 5px;
 	color: white;
 	border: none;
+	box-shadow: 0 0 4px black;
 	padding: 10px;
 	cursor: pointer;
 }
@@ -319,7 +327,7 @@ h3 img {
 	height: 30px;
 	font-family: 'ADLaM Display';
 	font-size: 18px;
-	color: #f2fffb;
+	color: white;
 	margin-left: 2rem;
 	padding-top: 2px;
 	opacity: 0;
@@ -328,7 +336,7 @@ h3 img {
 
 .info-section .stack-info .item .view-detail .inner-skillinfo .progress-group button{
 	border-radius: 5px;
-	background-color: #6cb6a0;
+	background-color: #5996FF;
 	box-shadow: 2px 2px black;
 	font-family: 'ADLaM Display';
 	font-weight: bold;
@@ -337,7 +345,7 @@ h3 img {
 
 .progress-container {
   width: 100%;
-  background-color: #9be6cf;
+  background-color: white;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -347,14 +355,14 @@ h3 img {
   width: 0;
 	padding-top: 5px;
 	border-radius: 5px;
-  background-color: #26725e;
+  background-color: #cdb8f1;
   transition: width 0.4s ease;
 }
 
 /*===========description-site===========*/
 .description {
 	width: 100%;
-	background-color: #97898d;
+	background-color: white;
 }
 
 .description .inner-coment {
@@ -377,7 +385,7 @@ h3 img {
 	height: inherit;
 	object-fit: contain;
 	border-radius: 2rem;
-	filter: drop-shadow(0px 0px 10px black);
+	filter: drop-shadow(0px 0px 10px #cdb8f1);
 }
 
 .description .inner-coment .description-container {
@@ -391,7 +399,7 @@ h3 img {
 /*===========portfolio-site===========*/
 .pf-site {
 	margin-bottom: 50px;
-	background-color: #c4baf4;
+	background-color: white;
 }
 
 .pf-site .pf-group {
@@ -423,8 +431,7 @@ h3 img {
 
 .pf .pf-img {
 	width: 100%;
-	height: 183px;
-	margin: 0 auto;
+	height: 8rem;
 }
 
 .pf .pf-img img {
@@ -473,7 +480,7 @@ h3 img {
 	height: 20rem;
 	text-align: center;
 	cursor: pointer;
-	filter: drop-shadow(0px 0px 10px #706a8b);
+	filter: drop-shadow(0px 0px 10px #cdb8f1);
 	transition: transform 0.3s ease;
 }
 
@@ -485,7 +492,7 @@ h3 img {
 /*===========Git & Notion===========*/
 .sns-site {
 	width: 100%;
-	background: linear-gradient(#000000, #242424);
+	background: linear-gradient(white, black);
 }
 
 .sns-site .title {
@@ -588,7 +595,7 @@ h3 img {
 	max-width: 800px;
 	width: 80%;
 	max-height: 800px;
-	height: 80%;
+	height: 90%;
 	overflow-y: auto;
 	transform: scale(0);
 	opacity: 0;
@@ -652,4 +659,13 @@ h3 img {
 	right: 10px;
 	font-size: 24px;
 	cursor: pointer;
+}
+
+/*Fullpage li color*/
+.fp-right ul li a span{
+	background: black !important;
+}
+
+.fp-right ul li a.active span {
+	background: #9be6cf !important;
 }
