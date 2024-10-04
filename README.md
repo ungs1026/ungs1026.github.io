@@ -2,6 +2,10 @@
 
 <hr>
 
+## 언어 사용량 통계
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=ungs1026&layout=compact)](https://github.com/ungs1026)
+
+
 <!--목차-->
 ## **목차**
 - [**Project**](#project)
@@ -16,7 +20,6 @@
     - [Portfolio Page](#portfolio-page)
     - [SNS Page](#sns-page)
 - [**Contact**](#contact)
-
 <hr>
 
 <!--프로젝트 설명-->
