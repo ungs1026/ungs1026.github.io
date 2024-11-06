@@ -20,7 +20,7 @@ body {
 }
 
 body {
-	background-color: white;
+	background-color: black;
 	font-size: 14px;
 	min-width: 720px;
 }
@@ -47,25 +47,27 @@ h3 img {
 	margin-right: 15px;
 }
 
+/*===========Common===========*/
+
 .section-title {
 	font-family: 'ADLaM Display';
 	font-size: 38px;
 	line-height: 4rem;
-	color: black;
+	color: white;
 }
 
 .title {
 	font-family: 'ADLaM Display';
 	font-size: 30px;
 	line-height: 4rem;
-	color: black;
+	color: white;
 }
 
 .title-korean {
 	font-family: "Jua", sans-serif;
 	font-size: 30px;
 	line-height: 3rem;
-	color: black;
+	color: white;
 }
 
 .detail {
@@ -73,7 +75,7 @@ h3 img {
 	font-size: 20px;
 	line-height: 30px;
 	margin-left: 10px;
-	color: black;
+	color: white;
 }
 
 .detail-korean {
@@ -81,13 +83,13 @@ h3 img {
 	font-size: 20px;
 	line-height: 30px;
 	margin-left: 10px;
-	color: black;
+	color: white;
 }
 
 /*===========top===========*/
 .start-main {
 	position: relative;
-	background: linear-gradient(black, white);
+	background: linear-gradient(white, black);
 }
 
 .start-main .text-group {
@@ -153,11 +155,11 @@ h3 img {
 	height: 500px;
 	margin: 0 auto;
 	padding-left: 7rem;
-	background-color: white;
+	background-color: black;
 }
 
 .information {
-	box-shadow: 0 0 10 black;
+	box-shadow: 0 0 10 white;
 	border-radius: 2rem;
 }
 
@@ -207,12 +209,13 @@ h3 img {
 	width: 20px;
 	height: 20px;
 	object-fit: contain;
+	filter: invert(100%);
 	margin-right: 16px;
 }
 
 /*===========info-section===========*/
 .info-section {
-	background-color: white;
+	background-color: black;
 }
 
 
@@ -237,7 +240,7 @@ h3 img {
 	height: 70px;
 	border-radius: 1.2em;
 	background-color: white;
-	filter: drop-shadow(0 0 5px black);
+	filter: drop-shadow(0 0 5px white);
 	object-fit: contain;
 }
 
@@ -275,7 +278,7 @@ h3 img {
 	margin: 0 auto;
 	border-radius: 2rem;
 	filter: drop-shadow(0px 0px 10px #cdb8f1);
-	background-color: white;
+	background-color: black;
 }
 
 .inner-info h2 {
@@ -345,7 +348,7 @@ h3 img {
 
 .progress-container {
   width: 100%;
-  background-color: white;
+  background-color: black;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -362,7 +365,7 @@ h3 img {
 /*===========description-site===========*/
 .description {
 	width: 100%;
-	background-color: white;
+	background-color: black;
 }
 
 .description .inner-coment {
@@ -399,7 +402,7 @@ h3 img {
 /*===========portfolio-site===========*/
 .pf-site {
 	margin-bottom: 50px;
-	background-color: white;
+	background-color: black;
 }
 
 .pf-site .pf-group {
@@ -492,7 +495,7 @@ h3 img {
 /*===========Git & Notion===========*/
 .sns-site {
 	width: 100%;
-	background: linear-gradient(white, black);
+	background: linear-gradient(black, white);
 }
 
 .sns-site .title {
@@ -565,6 +568,7 @@ h3 img {
 	font-size: 20px;
 	margin-block: 0;
 	margin-left: 30px;
+	color: black;
 }
 
 #modal-description-list {
@@ -660,12 +664,12 @@ h3 img {
 	font-size: 24px;
 	cursor: pointer;
 }
+/*===========Fullpage li color===========*/ 
 
-/*Fullpage li color*/
 .fp-right ul li a span{
-	background: black !important;
+	background: white !important;
 }
 
 .fp-right ul li a.active span {
-	background: #9be6cf !important;
+	background: #cdb8f1 !important;
 }
