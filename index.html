@@ -1,522 +1,837 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>portfolio site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-	<!--Google Material Icons & Font-->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    
+    <style>
+      /* card 페이지 스타일 시작 */
+      @import url("https://unpkg.com/normalize.css") layer(normalize);
+      @layer normalize, base, demo;
+      @layer demo {
+        .card-container {
+          width: 100%;
+          height: 100%;
+          background: #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 1rem;
+          padding-block: 2rem;
+          color: #fff;
+        }
+        .card-container h1,
+        .card-container > p {
+          margin: 0;
+        }
+        .card-container h1.fluid {
+          --font-size-min: 22;
+          --font-level: 4.25;
+        }
+        .card-container h3 {
+          white-space: nowrap;
+          margin: 0;
+        }
+        .card-container > p {
+          width: 74ch;
+          max-width: calc(100% - 4rem);
+          text-wrap: balance;
+          font-family: monospace;
+          margin-bottom: 4rem;
+          line-height: 1.5;
+          opacity: 0.8;
+          font-weight: 400;
+        }
+        @media (max-width: 768px) {
+          .card-container > p {
+            text-align: center;
+          }
+        }
+        .card-container li :is(svg, h3) {
+          opacity: 0.6;
+          transition: opacity calc(var(--speed) * 1.2) var(--easing);
+        }
+        .card-container li a {
+          opacity: 0;
+          transition: opacity calc(var(--speed) * 1.2) var(--easing);
+          width: fit-content;
+        }
+        .card-container li .card-background-img {
+          filter: grayscale(1) brightness(1.5);
+          scale: 1.1;
+          transition-property: filter, scale;
+          transition-duration: calc(var(--speed) * 1.2);
+          transition-timing-function: var(--easing);
+        }
+        .card-container [data-active="true"] :is(a, h3, svg) {
+          opacity: 1;
+        }
+        .card-container [data-active="true"] a {
+          transition-delay: calc(var(--speed) * 0.25);
+        }
+        .card-container [data-active="true"] .card-background-img {
+          filter: grayscale(0) brightness(1);
+          scale: 1;
+          transition-delay: calc(var(--speed) * 0.25);
+        }
+        .card-container article {
+          width: calc(var(--article-width) * 1px);
+          height: 100%;
+          position: absolute;
+          font-family: monospace;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          gap: 1rem;
+          padding-inline: calc(var(--base) * 0.5 - 9px);
+          padding-bottom: 1rem;
+          overflow: hidden;
+        }
+        .card-container article > svg {
+            cursor: pointer;
+        }
+        .card-container article h3 {
+          position: absolute;
+          top: 1rem;
+          left: calc(var(--base) * 0.5);
+          transform-origin: 0 50%;
+          rotate: 90deg;
+          font-size: 1rem;
+          font-weight: 300;
+          text-transform: uppercase;
+          font-family: monospace;
+        }
+        .card-container article svg {
+          width: 24px;
+          fill: none;
+          stroke: currentColor;
+        }
+        .card-container article p {
+          font-size: 13px;
+          text-wrap: balance;
+          line-height: 1.25;
+          opacity: 0;
+          transition: opacity 0.4s ease 0.2s;
+        }
+        .card-container li[data-active="true"] article p {
+            opacity: 0.8;
+        }
+        .card-container article .card-background-img {
+          position: absolute;
+          pointer-events: none;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          mask: radial-gradient(100% 100% at 100% 0, #fff, #0000);
+        }
+        .card-container ul {
+          --gap: 8px;
+          --base: clamp(2rem, 8cqi, 80px);
+          --easing: linear( 0 0%, 0.1538 4.09%, 0.2926 8.29%, 0.4173 12.63%, 0.5282 17.12%, 0.6255 21.77%, 0.7099 26.61%, 0.782 31.67%, 0.8425 37%, 0.8887 42.23%, 0.9257 47.79%, 0.9543 53.78%, 0.9752 60.32%, 0.9883 67.11%, 0.9961 75%, 1 100% );
+          --speed: 0.6s;
+          display: grid;
+          container-type: inline-size;
+          grid-template-columns: 10fr 1fr 1fr 1fr;
+          gap: var(--gap);
+          list-style-type: none;
+          justify-content: center;
+          padding: 0;
+          height: clamp(300px, 40dvh, 474px);
+          margin: 0;
+          width: 80%;
+          transition: grid-template-columns var(--speed) var(--easing);
+        }
+        .card-container li {
+          background: #111;
+          position: relative;
+          overflow: hidden;
+          min-width: var(--base);
+          border-radius: 8px;
+          border: 1px solid #333;
+        }
 
-	<!--GSAP & ScrollToPlugin-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
-		integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
-		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js"
-		integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q=="
-		crossorigin="anonymous"></script>
+        .skill-details { 
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            background: transparent;
+            padding: 1rem; 
+            display: grid; 
+            align-content: center; 
+            gap: 1rem; 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.4s ease; 
+        }
+        .skill-details.two-columns { grid-template-columns: 1fr 1fr; }
+        article.details-active .skill-details { opacity: 1; pointer-events: auto; }
+        article.details-active > h3,
+        article.details-active > p,
+        article.details-active > svg {
+            opacity: 0 !important;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .skill-item { display: flex; align-items: center; gap: 10px; }
+        .skill-item img { 
+            width: 24px; 
+            height: 24px; 
+            filter: none !important; 
+            scale: 1 !important; 
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        .progress-bar-container { flex-grow: 1; background-color: #444; border-radius: 5px; overflow: hidden; height: 8px; }
+        .progress-bar { background-color: #fff; height: 100%; border-radius: 5px; }
+      }
+      @layer base {
+        :root {
+          --font-size-min: 16;
+          --font-size-max: 20;
+          --font-ratio-min: 1.2;
+          --font-ratio-max: 1.33;
+          --font-width-min: 375;
+          --font-width-max: 1500;
+        }
+        :where(.fluid) {
+          --fluid-min: calc( var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0)) );
+          --fluid-max: calc( var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0)) );
+          --fluid-preferred: calc( (var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min)) );
+          --fluid-type: clamp( (var(--fluid-min) / 16) * 1rem, ((var(--fluid-min) / 16) * 1rem) - (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) + (var(--fluid-preferred) * var(--variable-unit, 100vi)), (var(--fluid-max) / 16) * 1rem );
+          font-size: var(--fluid-type);
+        }
+        .card-container *,
+        .card-container *:after,
+        .card-container *:before {
+          box-sizing: border-box;
+        }
+      }
+      /* card 페이지 스타일 끝 */
 
-	<!--Fullpage-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+      /* index 페이지 스타일 시작 */
+      @font-face { src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2"); font-family: "PP Neue Montreal", sans-serif; font-weight: 400; }
+      *,
+      *:before,
+      *:after { margin: 0; padding: 0; box-sizing: border-box; }
+      html { font-size: calc(100vw / 1512 * 10); }
+      body { font-family: "PP Neue Montreal", sans-serif; background-color: #000; color: #fff; height: 100vh; overflow: hidden; }
+      .slideshow { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+      .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden; overflow: hidden; transform: translateY(0); }
+      .slide.active { visibility: visible; }
+      .slide__img { opacity: 50%; position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background-size: cover; background-position: center; will-change: transform; transition: background-image 0.5s ease-in-out; }
+      .slide__img::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient( to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 40% ); }
+      .slide__text { position: absolute; bottom: 5rem; left: 5rem; max-width: 80%; overflow: hidden; z-index: 5; }
+      .slide__text-line { display: block; font-size: 4.5rem; line-height: 1; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; transform: translateY(100%); opacity: 0; }
+      
+      .controls { position: fixed; top: 2rem; right: 2rem; z-index: 10; display: flex; gap: 10px; }
+      .nav-button { background-color: transparent; border: 1px solid #fff; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s, color 0.3s; font-size: 1rem; }
+      .nav-button.active { background-color: #fff; color: #000; }
 
-	<!-- jQuery (Slick의 의존성) -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      .slide-counter { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; z-index: 10; }
+      .counter-container { position: relative; min-width: 2rem; height: 1.2rem; overflow: hidden; text-align: right; }
+      .counter-strip { position: absolute; top: 0; left: 0; width: 100%; text-align: right; }
+      .counter-number { height: 1.2rem; display: block; }
+      .counter-separator { width: 40px; height: 1px; background-color: #fff; margin: 0 1rem; }
+      .counter-total { min-width: 2rem; text-align: left; }
+      .slide-info { position: fixed; top: 2rem; left: 2rem; font-size: 0.8rem; font-weight: 400; opacity: 0.7; z-index: 10; max-width: 15rem; }
+      .slide-info-title { margin-bottom: 0.5rem; }
+      .cursor { position: fixed; width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); margin-top: -30px; margin-left: -30px; z-index: 9999; pointer-events: none; transform: scale(0); transition: transform 0.3s ease; }
+      .cursor-arrow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; opacity: 0; }
+      .cursor.active { transform: scale(1); }
+      .cursor.prev .cursor-arrow.prev,
+      .cursor.next .cursor-arrow.next { opacity: 1; }
+      
+      .sns-container { display: flex; justify-content: center; align-items: center; gap: 50px; width: 100%; height: 100%; perspective: 1000px; }
+      .sns-card { display: block; position: relative; width: 300px; height: 400px; color: #fff; text-decoration: none; transform-style: preserve-3d; }
+      .sns-card-bg { position: absolute; inset: 0; background: #222; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+      .sns-card-logo { position: absolute; top: 44%; left: 47%; width: 150px; transform: translate(-50%, -50%) translateZ(60px); filter: invert(1); }
+      .sns-card-title { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%) translateZ(40px); font-size: 1.2rem; font-weight: bold; }
+      .bg-white {background: #fff;}
+      .details-button { position: absolute; bottom: 2rem; right: 2rem; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; background: none; border: none; }
+      .details-button img { width: 100%; height: 100%; filter: invert(1); }
 
-	<!-- Slick CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-	<!-- Slick JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      /* Modal Styles */
+      .modal-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+      .modal-overlay.visible { opacity: 1; pointer-events: auto; }
+      .modal-content { background: #1a1a1a; padding: 30px; border-radius: 15px; max-width: 800px; width: 90%; text-align: center; transform: scale(0.9); transition: transform 0.4s ease; position: relative; max-height: 90vh; overflow-y: auto; }
+      .modal-overlay.visible .modal-content { transform: scale(1); }
+      .modal-close-button { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; }
+      #modal-thumbnail { width: 60%; max-height: 350px; object-fit: contain; border-radius: 10px; margin-bottom: 20px; }
+      #modal-title { font-size: 2rem; margin-bottom: 20px; }
+      .modal-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; line-height: 1.6; margin-bottom: 30px; }
+      .modal-details-left, .modal-details-right { font-size: 1rem; }
+      .modal-link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; color: #fff; text-decoration: none; margin-top: 20px; padding: 10px 20px; border: 1px solid #fff; border-radius: 5px; transition: background-color 0.3s, color 0.3s; }
+      .modal-link:hover { background-color: #fff; color: #000; }
+      .modal-link svg { width: 20px; height: 20px; fill: currentColor; }
 
-	<link rel="stylesheet" href="./css/style.css">
-	<script defer src="./js/script.js"></script>
-	<script defer src="./js/modal_mini.js"></script>
+      /* Slide 1 Animation */
+      #slide1-text-container { display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; height: 100%; }
+      .char { display: inline-block; font-size: 4.5rem; font-weight: 700; }
+
+      /* Slide 2 Layout & Animation */
+      @keyframes floatAnimation {
+        0% { transform: translateY(0) rotateY(-10deg); }
+        50% { transform: translateY(-15px) rotateY(-10deg); }
+        100% { transform: translateY(0) rotateY(-10deg); }
+      }
+      .slide2-container { display: flex; justify-content: center; align-items: center; gap: 5rem; width: 100%; height: 100%; padding: 5rem; }
+      .slide2-image { 
+          width: 300px; 
+          height: 400px; 
+          border-radius: 15px; 
+          transform-style: preserve-3d;
+          transform: rotateY(-10deg);
+          animation: floatAnimation 6s ease-in-out infinite;
+      }
+      .slide2-image:hover {
+          animation-play-state: paused;
+      }
+      .slide2-description { max-width: 40ch; }
+      .desc-line-wrapper { overflow: hidden; margin-bottom: 1rem; }
+      .desc-line { font-size: 16px; line-height: 1.4; display: block; transform: translateY(100%); }
+      
+      /* Responsive Styles */
+      @media (max-width: 900px) {
+        .slide2-container { flex-direction: column; text-align: center; }
+        .slide2-image { width: 80%; height: 300px; }
+        .modal-details-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 768px) {
+        .slide__text { bottom: 3rem; left: 2rem; max-width: 90%; }
+        .slide__text-line { font-size: 3rem; }
+        .sns-container { flex-direction: column; gap: 20px; }
+        .sns-card { width: 250px; height: 320px; }
+        .sns-card-logo { width: 120px; }
+      }
+    </style>
 </head>
-
 <body>
-	<div id="fullpage">
-		<!--1. Top Content-->
-		<section class="start-main section">
-			<div class="text-group">
-				<h1 id="title-group">
-					<span class="title-line">Portfolio&nbsp;Site</span><br>
-					<span class="title-line">Jae&nbsp;Ung&nbsp;Seo</span>
-				</h1>
-				<div class="next-page detail floating">
-					<div class="material-icons">arrow_downward</div>Scroll to the next page.
-				</div>
-			</div>
-		</section>
+    <div class="slideshow">
+        <div class="slide active">
+            <div id="slide1-text-container" data-text="WHAT IS SEO JAE UNG PORTFOLIO"></div>
+        </div>
+    
+        <div class="slide">
+            <div class="slide2-container">
+                <div class="slide2-image" data-tilt>
+                    <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" src="./sources/증명사진.jpg" alt="증명사진">
+                </div>
+                <div class="slide2-description">
+                    <div class="desc-line-wrapper"><span class="desc-line">'상상력'&'도전'&'지식에 대한 열정'</span></div>
+                    <div class="desc-line-wrapper"><span class="desc-line">항상 '새로움'을 중심으로 생각합니다.</span></div>
+                    <div class="desc-line-wrapper"><span class="desc-line">생각하고 고민하며 문제를 해결했을 때 희열을 즐깁니다.</span></div>
+                    <div class="desc-line-wrapper"><span class="desc-line">새로운 지식에 대한 거부감 없이 배우는 것을 즐깁니다.</span></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="slide">
+            <div class="card-container">
+                <h1 class="fluid">My Skills</h1>
+                <p>A showcase of my technical abilities and the tools I use to build modern web experiences.</p>
+                <ul>
+                  <li data-active="true">
+                    <article>
+                      <h3>Main Language</h3>
+                      <p>HTML5, CSS3, JavaScript, Vue, Jsp, php, MySql, Oracle</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 3h12l4 6-10 13L2 9Z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" />
+                      </svg>
+                      <img src="./sources/main.png" alt="" class="card-background-img" />
+                      <div class="skill-details two-columns">
+                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-bar" style="width: 85%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 88%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-bar" style="width: 82%;"></div></div></div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <h3>Front-End</h3>
+                      <p>HTML5, CSS3, JavaScript, Vue, Jsp</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" />
+                      </svg>
+                      <img src="./sources/front-end.jpg" alt="" class="card-background-img" />
+                       <div class="skill-details two-columns">
+                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-bar" style="width: 85%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <h3>Back-End</h3>
+                      <p>php, Java</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                      </svg>
+                      <img src="./sources/back-end.jpg" alt="" class="card-background-img" />
+                      <div class="skill-details">
+                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/java.svg" alt="Java"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <h3>DB + Tools</h3>
+                      <p>MySQL, Oracle, PostgreSQL / VS Code, Eclipse, Figma</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 17V5a2 2 0 0 0-2-2H4" />
+                        <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
+                      </svg>
+                      <img src="./sources/DB.jpeg" alt="" class="card-background-img" />
+                       <div class="skill-details two-columns">
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 88%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-bar" style="width: 82%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/postgresq.svg" alt="PostgreSQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/tool/vscode.svg" alt="VS Code"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/eclipse.svg" alt="Eclipse"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/figma.svg" alt="Figma"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+            </div>
+             <div class="slide__text">
+                <span class="slide__text-line">Technical</span>
+                <span class="slide__text-line">proficiency!</span>
+            </div>
+        </div>
+    
+        <div class="slide">
+            <div class="slide__img" style="background-image: url(./sources/thumbnail/isedolinfo.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/isedolinfo.gif" data-project-id="1"></div>
+            <div class="slide__text">
+                <span class="slide__text-line">PORTFOLIO</span>
+                <span class="slide__text-line">First - Isegye Idol Dom Info [ Vue 3, Supabase ]</span>
+            </div>
+            <button class="details-button" data-project-id="1"><img src="./sources/icons/info.svg" alt="Details"></button>
+        </div>
+    
+        <div class="slide">
+            <div class="slide__img" style="background-image: url(./sources/thumbnail/vibesync.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/vibesync_gif/mainfunction.gif" data-project-id="2"></div>
+            <div class="slide__text">
+                <span class="slide__text-line">PORTFOLIO</span>
+                <span class="slide__text-line">Second - vibesync [ JSP, Java ]</span>
+            </div>
+             <button class="details-button" data-project-id="2"><img src="./sources/icons/info.svg" alt="Details"></button>
+        </div>
 
-		<!--2. Introduce-->
-		<section class="introduce-section section">
-			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">INFORMATION</h3>
-			<div class="info-contain">
-				<img src="./source/증명사진_큰버전.jpg" alt="#" id="jaeung-img">
-				<div class="intro-detail">
+        <div class="slide">
+             <div class="slide__img" style="background-image: url(./sources/thumbnail/isedolshop.jpg); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/isedolshop.gif" data-project-id="3"></div>
+            <div class="slide__text">
+                <span class="slide__text-line">PORTFOLIO</span>
+                <span class="slide__text-line">Third - Isegye idol shop [ php, mysql (phpMyAdmin) ] </span>
+            </div>
+             <button class="details-button" data-project-id="3"><img src="./sources/icons/info.svg" alt="Details"></button>
+        </div>
 
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/name_icon.png" alt="name">
-							<div class="title">NAME</div>
-						</div>
-						<div class="detail">JAE UNG SEO</div>
-					</div>
+        <div class="slide">
+          <div class="slide__img" style="background-image: url(./sources/thumbnail/muc.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/muc.gif" data-project-id="4"></div>
+          <div class="slide__text">
+              <span class="slide__text-line">PORTFOLIO</span>
+              <span class="slide__text-line">Fourth - muc [ Vue3 ]</span>
+          </div>
+           <button class="details-button" data-project-id="4"><img src="./sources/icons/info.svg" alt="Details"></button>
+      </div>
 
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/email_icon.png" alt="name">
-							<div class="title">EMAIL</div>
-						</div>
-						<div class="detail">wodnd565@gmail.com</div>
-					</div>
+        <div class="slide">
+            <div class="sns-container">
+                <a href="https://github.com/ungs1026" target="_blank" class="sns-card" data-tilt>
+                    <div class="sns-card-bg"></div>
+                    <img src="./sources/icons/sns/github.svg" alt="GitHub Logo" class="sns-card-logo" style="left: 53%;">
+                    <p class="sns-card-title">GITHUB</p>
+                </a>
+                <a href="https://indigo-cactus-211.notion.site/Seo-Jae-Ung-11544ca1bde680fabc88d7f0ab3c4b26" target="_blank" class="sns-card" data-tilt>
+                    <div class="sns-card-bg"></div>
+                    <img src="./sources/icons/sns/notion.svg" alt="Notion Logo" class="sns-card-logo">
+                    <p class="sns-card-title">NOTION</p>
+                </a>
+            </div>
+            <div class="slide__text">
+                <span class="slide__text-line">SNS</span>
+                <span class="slide__text-line">GITHUB / NOTION</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls" id="nav-buttons-container"></div>
+    
+    <div class="slide-counter">
+        <div class="counter-container">
+            <div class="counter-strip">
+                <div class="counter-number">01</div>
+            </div>
+        </div>
+        <div class="counter-separator"></div>
+        <div class="counter-total">08</div>
+    </div>
+    
+    <div class="slide-info">
+        <div class="slide-info-title">Contemplative Series</div>
+        <div class="slide-info-desc">Navigate through a visual journey exploring the boundaries between form and emptiness.</div>
+    </div>
+    
+    <div class="cursor">
+        <div class="cursor-arrow prev">←</div>
+        <div class="cursor-arrow next">→</div>
+    </div>
 
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/phone-icon.png" alt="name">
-							<div class="title">PHONE</div>
-						</div>
-						<div class="detail">010-5657-4813</div>
-					</div>
-				</div>
-				<div class="intro-detail">
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/location_icon.png" alt="name">
-							<div class="title">LOCATION</div>
-						</div>
-						<div class="detail">전라남도 여수시</div>
-					</div>
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button">&times;</button>
+            <img id="modal-thumbnail" src="" alt="Project Thumbnail">
+            <h2 id="modal-title"></h2>
+            <div class="modal-details-grid">
+                <div id="modal-details-left"></div>
+                <div id="modal-details-right"></div>
+            </div>
+            <a id="modal-github-link" class="modal-link" href="#" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>DETAIL</span>
+            </a>
+        </div>
+    </div>
 
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/birthday_icon.png" alt="name">
-							<div class="title">BIRTHDAY</div>
-						</div>
-						<div class="detail">99.10.26</div>
-					</div>
+    <script type="module">
+        // card 페이지 스크립트
+        const cardList = document.querySelector(".card-container ul");
+        if (cardList) {
+            const cardItems = cardList.querySelectorAll("li");
+            
+            const setCardIndex = (event) => {
+                const closest = event.target.closest("li");
+                if (closest && !event.target.closest('svg')) {
+                    const index = [...cardItems].indexOf(closest);
+                    const cols = new Array(cardList.children.length).fill().map((_, i) => (index === i ? "10fr" : "1fr")).join(" ");
+                    cardList.style.setProperty("grid-template-columns", cols);
 
-					<div class="info-group">
-						<div class="icon-title">
-							<img src="./source/icons/school_icon.png" alt="name">
-							<div class="title">SCHOOL</div>
-						</div>
-						<div class="detail">순천대학교</div>
-						<div class="detail">멀티미디어공학전공</div>
-					</div>
+                    cardItems.forEach((item, i) => {
+                        const p = item.querySelector('article p');
+                        if (p) p.style.opacity = i === index ? 0.8 : 0;
+                        if (i !== index) {
+                            item.querySelector('article').classList.remove('details-active');
+                        }
+                    });
+                }
+            };
+            cardList.addEventListener("focus", setCardIndex, true);
+            cardList.addEventListener("click", setCardIndex);
+            cardList.addEventListener("pointermove", setCardIndex);
 
-				</div>
-			</div>
+            const skillIcons = cardList.querySelectorAll('article > svg');
+            skillIcons.forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const article = e.currentTarget.closest('article');
+                    if (article) {
+                        article.classList.toggle('details-active');
+                    }
+                });
+            });
+            
+            if (cardItems.length > 0 && cardItems[0]) {
+                const firstP = cardItems[0].querySelector('article p');
+                if(firstP) firstP.style.opacity = 0.8;
+            }
 
-		</section>
+            const cardResync = () => {
+                const w = Math.max(...[...cardItems].map((i) => i.offsetWidth));
+                cardList.style.setProperty("--article-width", w);
+            };
+            window.addEventListener("resize", cardResync);
+            cardResync();
+        }
 
-		<!--3. Tchnology Stack-->
-		<section class="info-section section">
-			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">SKILL</h3>
-			<div class="stack-group">
-				<div class="slider-container">
-					<div class="slider-wrapper">
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>Front</h2>
-								<div class="item">
-									<div class="view-detail">
-										<img src="./source/technology_icon/HTML_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">HTML</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">80%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(0, 80)">check</button>
-											</div>
-										</div>
-									</div>
-									<div class="view-detail">
-										<img src="./source/technology_icon/CSS3_Logo.jpg" style="width: 80px; height: 70px;" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">CSS</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">80%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(1, 80)">check</button>
-											</div>
-										</div>
-									</div>
-									<div class="view-detail">
-										<img src="./source/technology_icon/JS_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">JavaScript</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">60%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(2, 60)">check</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+        // Project Modal 데이터
+        const projectData = {
+            '1': { title: 'Isegye Idol Dom Info', thumbnail: './sources/isedolinfo.gif', 
+                detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 Dom 공연 축하를 위한 정보 사이트<br>- 각 멤버별 정보 제공<br>- 게시판을 이용한 소통<br>- 멤버별 다양한 음악 제공<br>- Supabase의 realtime을 이용한 watchparty', 
+                detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- Supabase [Realtime]<br>- Chat GPT, Grock', githubUrl: 'https://github.com/ungs1026/DomIsedolInfo' },
+            '2': { title: 'vibesync', thumbnail: './sources/vibesync_gif/mainfunction.gif', 
+                detailsLeft: '<strong>Main Features:</strong><br>- sns과 같이 글 작성 및 공유<br>- workspace를 이용한 다양한 데이터 정리<br>- WebSocket을 이용한 Watchparty', 
+                detailsRight: '<strong>Tech Stack:</strong><br>- JSP / Servlets (Java)<br>- WebSocket<br>- Oracle<br>- Summernote.js<br>- Gemini 2.5Pro', githubUrl: 'https://github.com/ungs1026/vibesync_person' },
+            '3': { title: 'Isegye Idol Shop', thumbnail: './sources/isedolshop.gif', 
+                detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 멤버 정보 제공<br>- 다양한 앨범 확인 및 필터링<br>- 굿즈 필터링 및 상세정보 제공<br>- 멤버별 다양한 음악 제공<br>- Watchparty를 이용한 공유되는 영상 재생', 
+                detailsRight: '<strong>Tech Stack:</strong><br>- PHP<br>- MySQL (phpMyAdmin)<br>- JavaScript, HTML, CSS', githubUrl: 'https://github.com/ungs1026/ISEDOL' },
+            '4': { title: 'muc', thumbnail: './sources/muc.gif', 
+                detailsLeft: '<strong>Main Features:</strong><br>- 간단한 Vue 사용법을 익히기 위한 프로젝트<br>- Library, API, CSS, Font, JS, GSAP의 정보를 정리해 놓은 도서관<br>- Font Test기능<br>- Library의 기본 기능을 Preview에서 확인 가능', 
+                detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- HTML, CSS, JS', githubUrl: 'https://github.com/ungs1026/muc' },
+        };
 
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>Back</h2>
-								<div class="item">
+        // index 페이지 스크립트
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".slide");
+            const counterStrip = document.querySelector(".counter-strip");
+            const cursor = document.querySelector(".cursor");
+            const counterTotal = document.querySelector(".counter-total");
+            const navButtonsContainer = document.getElementById("nav-buttons-container");
+            let currentIndex = 0;
+            let isAnimating = false;
 
-									<div class="view-detail">
-										<img src="./source/technology_icon/vue.png" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">Vue</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">50%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(3, 50)">check</button>
-											</div>
-										</div>
-									</div>
+            const NEXT = 1;
+            const PREV = -1;
+            const SLIDE_DURATION = 1.5;
 
-									<div class="view-detail">
-										<img src="./source/technology_icon/PHP_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">PHP</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">70%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(4, 70)">check</button>
-											</div>
-										</div>
-									</div>
+            gsap.registerPlugin(CustomEase);
+            CustomEase.create("slideInOut", "0.25, 1, 0.5, 1");
+            CustomEase.create("textReveal", "0.77, 0, 0.175, 1");
 
-								</div>
-							</div>
-						</div>
+            function formatNumber(num) { return num < 10 ? `0${num}` : `${num}`; }
 
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>SQL</h2>
-								<div class="item">
-									<div class="view-detail">
-										<img src="./source/technology_icon/MySQL_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">MySQL</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">80%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(5, 80)">check</button>
-											</div>
-										</div>
-									</div>
-									<div class="view-detail">
-										<img src="./source/technology_icon/phpMyAdmin_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">phpMyAdmin</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">70%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(6, 70)">check</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+            function updateNavButtons(activeIndex) {
+                const buttons = navButtonsContainer.children;
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.toggle('active', i === activeIndex);
+                }
+            }
 
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>Development tool</h2>
-								<div class="item">
-									<div class="view-detail">
-										<img src="./source/technology_icon/vscode_Logo.jpg" alt="#">
-										<div class="title">Visual Studio Code </div>
-									</div>
-								</div>
-							</div>
-						</div>
+            function initNavButtons() {
+                navButtonsContainer.innerHTML = '';
+                slides.forEach((_, i) => {
+                    const button = document.createElement('button');
+                    button.className = 'nav-button';
+                    button.textContent = formatNumber(i + 1);
+                    button.addEventListener('click', () => jumpToSlide(i));
+                    navButtonsContainer.appendChild(button);
+                });
+                updateNavButtons(currentIndex);
+            }
 
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>Design</h2>
-								<div class="item">
-									<div class="view-detail">
-										<img src="./source/technology_icon/photoshop_Logo.jpg" alt="#">
-										<div class="inner-skillinfo">
-											<div class="title" style="line-height: 40px;">Adobe Photoshop</div>
-											<div class="progress-group">
-												<div class="progress-container">
-													<div class="progress-bar" id="progress-bar">
-														<h6 class="percent">50%</h6>
-													</div>
-												</div>
-												<button onclick="setProgress(7, 50)">check</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+            function initCounter() {
+                counterTotal.textContent = formatNumber(slides.length);
+                counterStrip.innerHTML = "";
+                slides.forEach((_, i) => {
+                    const numberDiv = document.createElement("div");
+                    numberDiv.className = "counter-number";
+                    numberDiv.textContent = formatNumber(i + 1);
+                    counterStrip.appendChild(numberDiv);
+                });
+                gsap.set(counterStrip, { y: 0 });
+            }
 
-						<div class="stack-info">
-							<div class="inner-info">
-								<h2>Certificate</h2>
-								<div class="item">
-									<div class="view-detail">
-										<img src="./source/technology_icon/qnet_logo.png" alt="#">
-										<div>
-											<div class="title-korean">정보처리기사</div>
-											<div class="title-korean" style="font-size: 16px; line-height: 30px;">한국산업인력공단 [2023.09.01 취득]
-											</div>
-										</div>
-									</div>
-									<div class="view-detail">
-										<img src="./source/technology_icon/qnet_logo.png" alt="#">
-										<div>
-											<div class="title-korean">멀티미디어콘텐츠제작전문가</div>
-											<div class="title-korean" style="font-size: 16px; line-height: 30px;">한국산업인력공단 [2024.05.29 취득]
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+            initCounter();
+            initNavButtons();
 
-					</div>
-					<button class="slider-button prev">Prev</button>
-					<button class="slider-button next">Next</button>
-				</div>
+            function animateSlide1Text() {
+                const textContainer = document.getElementById('slide1-text-container');
+                if (!textContainer || textContainer.dataset.animated) return;
+                
+                const text = textContainer.dataset.text;
+                textContainer.innerHTML = '';
+                text.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.className = 'char';
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    textContainer.appendChild(span);
+                });
 
-			</div>
-		</section>
+                gsap.from(".char", {
+                    opacity: 0,
+                    y: () => gsap.utils.random(-200, 200),
+                    x: () => gsap.utils.random(-300, 300),
+                    scale: () => gsap.utils.random(0.5, 1.5),
+                    rotation: () => gsap.utils.random(-180, 180),
+                    duration: 1,
+                    ease: "power2.out",
+                    stagger: 0.03
+                });
+                textContainer.dataset.animated = 'true';
+            }
+            animateSlide1Text();
 
-		<!--4. Descripting-->
-		<section class="description section">
-			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">DESCRIPTION</h3>
-			<div class="inner-coment">
-				<div class="img-container">
-					<img src="./source/증명사진_큰버전.jpg" alt="#">
-				</div>
-				<div class="description-container">
-					<div class="title">Introduce & Strength</div><br>
-					<div class="detail-korean">'상상력'&nbsp;&nbsp;&&nbsp;&nbsp;'도전'&nbsp;&nbsp;&&nbsp;&nbsp;'지식에 대한 열정'</div><br>
-					<div class="detail-korean">항상 '새로움'을 중심으로 생각합니다.</div><br>
-					<div class="detail-korean">생각하고 고민하며 문제를 해결했을 때 희열을 즐깁니다.</div><br>
-					<div class="detail-korean">새로운 지식에 대한 거부감 없이 배우는 것을 즐깁니다.</div><br>
-				</div>
-			</div>
-		</section>
+            function animateSlide2Text() {
+                const textLines = document.querySelectorAll(".slide2-description .desc-line");
+                if (!textLines.length) return;
+                gsap.fromTo(textLines, { y: '100%' }, {
+                    y: '0%',
+                    duration: 1,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
+            }
 
-		<!--5. Portfolio Site-->
-		<section class="pf-site section">
-			<h3 class="section-title"><img src="./source/icons/link_icon.png" alt="ICON">PORTFOLIO</h3>
-			<div class="card-container">
+            function animateCounter(targetIndex) {
+                gsap.to(counterStrip, { y: `${-targetIndex * 1.2}rem`, duration: SLIDE_DURATION, ease: "slideInOut" });
+            }
 
-				<!--Stardays FanSite-->
-				<div class="card" data-title="Stardays FanSite" data-images='[
-					"./source/portfolio_img/stardays_main.png",
-					"./source/portfolio_img/stardays_news.png",
-					"./source/portfolio_img/stardays_info.png",
-					"./source/portfolio_img/stardays_albums.png"]' 
-					data-list-left='[
-					"방송인으로 구성된 버츄얼 그룹 Stardays의 팬 사이트이며 News, Info, Album, Goods 에 대해 알 수 있습니다.",
-					"최신 정보를 빠르게 습득할 수 있고 멤버별 노래 및 정보를 찾아 볼 수 있습니다.", 
-					"HTML과 CSS3, JS를 이용하여 기초적인 문서의 구조를 이해할 수 있었습니다."]' 
-					data-list-right='[
-					"Main : 멤버별 방송, X, Youtube 및 단체 곡, 방송 일정에 대해 알 수 있습니다.",
-					"News : 매 월 발생하는 이벤트에 대한 정보 및 사진을 알 수 있습니다.",
-					"Info : 버튼을 통해 멤버별 세부 정보를 알 수 있으며 정보는 최신 노래,  개인정보, 방송 밈에 대해 알 수 있습니다.",
-					"Albums : 단체 곡 및 각 맴버별 최신 노래를 알 수 있습니다."]' 
-					data-git="https://github.com/ungs1026/Stardays_Fansite">
-					<div class="pf">
-						<h3 class="title" style="color: black; padding-bottom: 0;">Stardays FanSite</h3>
-						<div class="pf-img">
-							<img src="./source/portfolio_img/stardays_total.png" alt="#">
-						</div>
-						<div class="press detail" style="font-size: 16px; color: black;">Press to read more.</div>
-					</div>
-				</div>
+            function preloadGif(slideElement) {
+                const imgDiv = slideElement.querySelector('.slide__img');
+                if (!imgDiv || !imgDiv.dataset.gifSrc || imgDiv.dataset.gifLoaded) return;
+                const gifSrc = imgDiv.dataset.gifSrc;
+                const img = new Image();
+                img.onload = () => {
+                    imgDiv.style.backgroundImage = `url(${gifSrc})`;
+                    imgDiv.dataset.gifLoaded = 'true';
+                };
+                img.src = gifSrc;
+            }
 
-				<!--Stellive Playlist-->
-				<div class="card" data-title="Stellive Playlist" data-images='[
-					"./source/portfolio_img/stellive_main.png",
-					"./source/portfolio_img/stellive_playlist.png",
-					"./source/portfolio_img/stellive_noticeboard.png"]' 
-					data-list-left='[
-					"방송인으로 구성된 Stellive의 3기 멤버들로 구성하여 만든 Music Playlist 입니다.",
-					"DB 내부의 Column 값으로 구분하여 원하는 멤버의 노래를 들을 수 있으며, Freeboard는 자유게시판, Notice는 공지사항으로 정보를 알 수 있습니다.",
-					"게시판의 경우 SummerNote와 Bootstrap을 이용하여 디자인 및 구성하였습니다.",
-					"HTML, CSS3, JS, PHP, phpMyAdmin을 사용하여 제작하였습니다.", 
-					"phpMyAdmin을 통해 데이터의 구조 및 테이블을 구성하였습니다.",
-					"테이블은 Albums, Artists, Board, Songs 로 구성되어 있습니다."]' 
-					data-list-right='[
-					"Main : 스텔라이브 3기생의 전체 사진 및 멤버를 선택하여 노래를 들을 수 있습니다.",
-					"Playlist : DB에 저장된 카테고리에 따라 멤버의 노래를 순차적으로 재생할 수 있습니다.",
-					"Board : 자유 게시판 및 공지사항으로 정보를 알리거나 획득할 수 있습니다."]' 
-					data-git="https://github.com/ungs1026/MusicStellive">
-					<div class="pf">
-						<h3 class="title" style="color: black; padding-bottom: 0;">Stellive Playlist</h3>
-						<div class="pf-img">
-							<img src="./source/portfolio_img/stellive_total.png" alt="#">
-						</div>
-						<div class="press detail" style="font-size: 16px; color: black;">Press to read more.</div>
-					</div>
-				</div>
+            function performNavigation(prevIndex, nextIndex) {
+                if (prevIndex === nextIndex) return;
+                isAnimating = true;
+                const direction = nextIndex > prevIndex ? NEXT : PREV;
 
-				<!--Stellive Goods Shop-->
-				<div class="card" data-title="Stellive Goods Shop" data-images='[
-					"./source/portfolio_img/goodsShop_register.png",
-					"./source/portfolio_img/goodsShop_main.png",
-					"./source/portfolio_img/goodsShop_detail.png",
-					"./source/portfolio_img/goodsShop_comunity.png"]' 
-					data-list-left='[
-					"Stellive의 Goods Shop으로 정렬 및 세부정보, 게시판을 이용할 수 있습니다.", 
-					"HTML, CSS3, JS, PHP, phpMyAdmin을 사용하여 제작하였습니다.",
-					"게시판의 경우 SummerNote와 Bootstrap을 이용하여 디자인 및 구성하였습니다.",
-					"phpMyAdmin을 통해 데이터의 구조 및 테이블을 구성하였으며, 테이블은 Freeboard, Goods, Users로 구성되어 있습니다."]' 
-					data-list-right='[
-					"Register : 로그인 및 계정 생성이 가능하며 위 버튼을 통해 조정할 수 있습니다.",
-					"Main : 멤버 별 사진 및 최신 노래 한곡과 굿즈의 정렬 및 종류를 알 수 있습니다.",
-					"Goods Detail : 굿즈의 사진 정보, 세부 정보, 배송 정보, 반품 정보를 알 수 있습니다.",
-					"Board : 자유롭게 정보 및 의견을 교환할 수 있습니다."]' 
-					data-git="https://github.com/ungs1026/ShopingMall_Stellive">
-					<div class="pf">
-						<h3 class="title" style="color: black; padding-bottom: 0;">Stellive Goods Shop</h3>
-						<div class="pf-img">
-							<img src="./source/portfolio_img/goodsShop_register.png" alt="#">
-						</div>
-						<div class="press detail" style="font-size: 16px; color: black;">Press to read more.</div>
-					</div>
-				</div>
+                const currentSlide = slides[prevIndex];
+                const currentImage = currentSlide.querySelector(".slide__img");
+                const currentTextLines = currentSlide.querySelectorAll(".slide__text-line");
+                const nextSlide = slides[nextIndex];
+                const nextImage = nextSlide.querySelector(".slide__img");
+                const nextTextLines = nextSlide.querySelectorAll(".slide__text-line");
 
-				<!--Isedol Site-->
-				<div class="card" data-title="ISEGYEIDOL SITE" data-images='[
-					"./source/portfolio_img/isedol_register.png",
-					"./source/portfolio_img/isedol_main.png",
-					"./source/portfolio_img/isedol_goods.png",
-					"./source/portfolio_img/isedol_goodsDetail.png",
-					"./source/portfolio_img/isedol_song.png",
-					"./source/portfolio_img/isedol_songArtist.png"]' 
-					data-list-left='[
-					"IsegyeIdol의 팬 사이트로 로그인, 굿즈 확인 및 세부정보, 각 멤버별 노래 재생 및 플레이리스트 설정이 가능합니다..", 
-					"HTML, CSS3, JS, PHP, phpMyAdmin을 사용하여 제작하였습니다.",
-					"로그인을 통한 접속 및 상단 노출을 통해 여부 확인이 가능합니다.",
-					"phpMyAdmin을 통해 데이터의 구조 및 테이블을 구성하였으며, 테이블은 Albums, Artists, Goods, Songs, Users로 구성되어 있습니다.",
-					"각각 플레이리스트 구분, 가수 구분, 굿즈 데이터화, 앨범 및 아티스트의 곡 삽입, 유저 등록의 요소로 이용되었습니다."
-					]' 
-					data-list-right='[
-					"Register : 로그인 및 계정 생성이 가능하며 상단의 버튼을 통해 변경 가능하며 정보는 DB에 등록됩니다.",
-					"Main : 단체 이미지 및 맴버별 SNS, 3rd Kidding의 Reward정보, 데뷔 및 콘서트 포스터를 확인할 수 있습니다.",
-					"Goods : 굿즈의 종류 및 정렬로 인한 검색이 가능하며 상단의 경우 단체곡 3가지를 청취할 수 있습니다.",
-					"Goods Detail: 굿즈의 대표 사진, 세부 정보, 결제 / 배송 / 교환반품 / 환불에 대한 정보를 얻을 수 있습니다.",
-					"Song : 각 맴버별 대표곡들을 통해 음악 청취가 가능합니다.",
-					"Playlist: 맴버의 곡, 대표 사진 등을 알 수 있습니다."
-					]' data-git="https://github.com/ungs1026/ISEDOL">
-					<div class="pf">
-						<h3 class="title" style="color: black; padding-bottom: 0;">ISEGYEIDOL SITE</h3>
-						<div class="pf-img">
-							<img src="./source/portfolio_img/isedol_register.png" alt="#">
-						</div>
-						<div class="press detail" style="font-size: 16px; color: black;">Press to read more.</div>
-					</div>
-				</div>
+                const tl = gsap.timeline({
+                    defaults: { duration: SLIDE_DURATION, ease: "slideInOut" },
+                    onComplete: () => {
+                        gsap.set(currentSlide, { visibility: "hidden" });
+                        currentSlide.classList.remove("active");
+                        nextSlide.classList.add("active");
+                        isAnimating = false;
+                        updateNavButtons(nextIndex);
+                        
+                        if (nextIndex === 1) animateSlide2Text();
+                        if(nextSlide.querySelector('.slide__img')?.dataset.gifSrc) {
+                            preloadGif(nextSlide);
+                        }
+                    }
+                });
 
-			</div>
-		</section>
+                animateCounter(nextIndex);
+                gsap.set(nextSlide, { visibility: "visible", y: direction * 100 + "%" });
+                
+                if(nextImage) gsap.set(nextImage, { y: -direction * 40 + "%", scale: 1.4, scaleY: 1.8, rotation: -direction * 8, transformOrigin: direction === NEXT ? "0% 0%" : "100% 100%" });
+                if(nextTextLines && nextTextLines.length > 0) gsap.set(nextTextLines, { y: 100 + "%", opacity: 0 });
 
-		<!-- Git & Notion-->
-		<section class="sns-site section">
-			<h3 class="section-title" >
-				<img src="./source/icons/link_icon.png" alt="ICON">
-				Git & Notion
-			</h3>
-			<div class="card-mini-container">
+                if(currentTextLines && currentTextLines.length > 0) tl.to(currentTextLines, { y: -80 + "%", opacity: 0, duration: 0.7, stagger: 0.05, ease: "power2.in" }, 0);
+                tl.to(currentSlide, { y: -direction * 100 + "%" }, 0.2);
+                if(currentImage) tl.to(currentImage, { y: direction * 40 + "%", scale: 1.4, scaleY: 1.8, rotation: direction * 8, ease: "imageWarp", transformOrigin: direction === NEXT ? "0% 100%" : "100% 0%" }, 0.2);
+                
+                tl.to(nextSlide, { y: "0%" }, 0.2);
+                if(nextImage) tl.to(nextImage, { y: "0%", scale: 1, scaleY: 1, rotation: 0, ease: "imageWarp" }, 0.2);
+                if(nextTextLines && nextTextLines.length > 0) tl.to(nextTextLines, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "textReveal", delay: 0.6 }, 0.9);
+            }
 
-				<div class="card-mini card-mini1" data-img="source/technology_icon/github_Logo.jpg"
-					data-link="https://github.com/ungs1026" data-title="소스코드 및 공부 내용 저장소 입니다." data-list='[
-				"연습 혹은 진행한 프로젝트의 source, code, text",
-				"공부하며 정리한 파일",
-				"클론코딩의 예시로 사용된 코드"]'>
-					<img src="./source/technology_icon/git_icon.png" alt="#">
-				</div>
+            function navigate(direction) {
+                if (isAnimating) return;
+                const prevIndex = currentIndex;
+                currentIndex = direction === NEXT ? (currentIndex + 1) % slides.length : (currentIndex - 1 + slides.length) % slides.length;
+                performNavigation(prevIndex, currentIndex);
+            }
 
-				<div class="card-mini card-mini2" data-img="source/technology_icon/notion_Logo.jpg"
-					data-link="https://www.notion.so/Seo-Jae-Ung-11544ca1bde680fabc88d7f0ab3c4b26" data-title="간단한 소개 및 정보에 대한 정리내용 입니다."
-					data-list='[
-					"간단한 개인 소개 및 정보",
-					"언어 및 툴에 대한 숙련도",
-					"공부한 내용 정리 및 Operating System"
-					]'>
-					<img src="./source/technology_icon/notion_Logo.jpg" alt="#">
-				</div>
-			</div>
-		</section>
+            function jumpToSlide(targetIndex) {
+                if (isAnimating || currentIndex === targetIndex) return;
+                performNavigation(currentIndex, targetIndex);
+                currentIndex = targetIndex;
+            }
 
-	</div>
+            document.addEventListener("mousemove", (e) => {
+                gsap.to(cursor, { left: e.clientX, top: e.clientY, duration: 0.1 });
+                cursor.classList.add("active");
+                if (e.clientX < window.innerWidth / 2) { cursor.classList.remove("next"); cursor.classList.add("prev"); } 
+                else { cursor.classList.remove("prev"); cursor.classList.add("next"); }
+                clearTimeout(window.cursorTimeout);
+                window.cursorTimeout = setTimeout(() => cursor.classList.remove("active"), 2000);
+            });
 
-	<!--Modal-->
-	<div class="modal" id="modal">
-		<div class="modal-content" id="modal-content">
-			<span class="close">&times;</span>
-			<h2 id="modal-title" class="title" style="margin-bottom: 0;"></h2>
+            document.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+            
+            window.addEventListener("wheel", (e) => {
+                if (isAnimating) return;
+                if (e.deltaY > 0) navigate(NEXT);
+                else navigate(PREV);
+            });
 
-			<!-- 이미지 슬라이더 -->
-			<div id="modal-slider" class="slider">
-				<!-- 이미지들이 이곳에 추가됩니다. -->
-			</div>
-			<hr color="#cdb8f1" size="3px">
-			<div style="margin: 20px 0 0 0; font-size: 16px;">소개</div>
-			<div class="modal-lists">
-				<ul id="modal-left-list"></ul>
-				<ul id="modal-right-list"></ul>
-			</div>
-			<hr color="#cdb8f1" size="3px">
-			<div class="modal-git-class">
-				<a id="modal-git" href="#" target="_blank">
-					<img src="./source/technology_icon/github_Logo.jpg" alt="git">
-					<div class="title">DETAIL</div>
-				</a>
-			</div>
-		</div>
-	</div>
+            let touchStartY = 0;
+            document.addEventListener("touchstart", (e) => { touchStartY = e.changedTouches[0].screenY; });
+            document.addEventListener("touchend", (e) => {
+                if(isAnimating) return;
+                const touchEndY = e.changedTouches[0].screenY;
+                if (touchStartY > touchEndY + 5) navigate(NEXT);
+                else if (touchStartY < touchEndY - 5) navigate(PREV);
+            });
 
-	<!--Modal Mini-->
-	<div class="modal-mini" id="modal-mini">
-		<div class="modal-mini-content" id="modal-mini-content">
-			<span class="close-mini">&times;</span>
-			<a id="modal-mini-link" href="" target="_blank">
-				<img id="modal-mini-img" src="" alt="#">
-				<span class="press-icon" style="margin-top: 2rem;">&uarr; Click Icon</span>
-			</a>
-			<div>
-				<h2 id="modal-mini-title" class="title-korean" style="margin-bottom: 0; list-style-type: none;"></h2>
-				<ul class="detail-korean" id="modal-description-list">
-				</ul>
-			</div>
-		</div>
-	</div>
+            document.addEventListener("click", (e) => {
+                if(isAnimating) return;
+                if (e.target.closest("a, button")) return;
+                if (e.clientX > window.innerWidth / 2) navigate(NEXT);
+                else navigate(PREV);
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowDown" || e.key === "ArrowRight") navigate(NEXT);
+                else if (e.key === "ArrowUp" || e.key === "ArrowLeft") navigate(PREV);
+            });
+
+            VanillaTilt.init(document.querySelectorAll(".sns-card"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
+            VanillaTilt.init(document.querySelector(".slide2-image"), { max: 15, speed: 400, glare: true, "max-glare": 0.5 });
+
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalThumbnail = document.getElementById('modal-thumbnail');
+            const modalDetailsLeft = document.getElementById('modal-details-left');
+            const modalDetailsRight = document.getElementById('modal-details-right');
+            const modalLink = document.getElementById('modal-github-link');
+            
+            function showModal(projectId) {
+                const data = projectData[projectId];
+                if (!data) return;
+                modalTitle.textContent = data.title;
+                modalThumbnail.src = data.thumbnail;
+                modalDetailsLeft.innerHTML = data.detailsLeft;
+                modalDetailsRight.innerHTML = data.detailsRight;
+
+                if (data.githubUrl) {
+                    modalLink.href = data.githubUrl;
+                    modalLink.style.display = 'inline-flex';
+                } else {
+                    modalLink.style.display = 'none';
+                }
+                modal.classList.add('visible');
+            }
+
+            function hideModal() {
+                modal.classList.remove('visible');
+            }
+
+            document.querySelectorAll('.details-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showModal(button.dataset.projectId);
+                });
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target.classList.contains('modal-close-button')) {
+                    hideModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('visible')) {
+                    hideModal();
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
