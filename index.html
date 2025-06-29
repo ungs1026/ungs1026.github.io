@@ -566,18 +566,10 @@
 
         // Project Modal 데이터
         const projectData = {
-            '1': { title: 'Isegye Idol Dom Info', thumbnail: './sources/isedolinfo.gif', 
-                detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 Dom 공연 축하를 위한 정보 사이트<br>- 각 멤버별 정보 제공<br>- 게시판을 이용한 소통<br>- 멤버별 다양한 음악 제공<br>- Supabase의 realtime을 이용한 watchparty', 
-                detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- Supabase [Realtime]<br>- Chat GPT, Grock', githubUrl: 'https://github.com/ungs1026/DomIsedolInfo' },
-            '2': { title: 'vibesync', thumbnail: './sources/vibesync_gif/mainfunction.gif', 
-                detailsLeft: '<strong>Main Features:</strong><br>- sns과 같이 글 작성 및 공유<br>- workspace를 이용한 다양한 데이터 정리<br>- WebSocket을 이용한 Watchparty', 
-                detailsRight: '<strong>Tech Stack:</strong><br>- JSP / Servlets (Java)<br>- WebSocket<br>- Oracle<br>- Summernote.js<br>- Gemini 2.5Pro', githubUrl: 'https://github.com/ungs1026/vibesync_person' },
-            '3': { title: 'Isegye Idol Shop', thumbnail: './sources/isedolshop.gif', 
-                detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 멤버 정보 제공<br>- 다양한 앨범 확인 및 필터링<br>- 굿즈 필터링 및 상세정보 제공<br>- 멤버별 다양한 음악 제공<br>- Watchparty를 이용한 공유되는 영상 재생', 
-                detailsRight: '<strong>Tech Stack:</strong><br>- PHP<br>- MySQL (phpMyAdmin)<br>- JavaScript, HTML, CSS', githubUrl: 'https://github.com/ungs1026/ISEDOL' },
-            '4': { title: 'muc', thumbnail: './sources/muc.gif', 
-                detailsLeft: '<strong>Main Features:</strong><br>- 간단한 Vue 사용법을 익히기 위한 프로젝트<br>- Library, API, CSS, Font, JS, GSAP의 정보를 정리해 놓은 도서관<br>- Font Test기능<br>- Library의 기본 기능을 Preview에서 확인 가능', 
-                detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- HTML, CSS, JS', githubUrl: 'https://github.com/ungs1026/muc' },
+            '1': { title: 'Isegye Idol Dom Info', thumbnail: './sources/isedolinfo.gif', detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 Dom 공연 축하를 위한 정보 사이트<br>- 각 멤버별 정보 제공<br>- 게시판을 이용한 소통<br>- 멤버별 다양한 음악 제공<br>- Supabase의 realtime을 이용한 watchparty', detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- Supabase [Realtime]<br>- Chat GPT, Grock', githubUrl: 'https://github.com/ungs1026/DomIsedolInfo' },
+            '2': { title: 'vibesync', thumbnail: './sources/vibesync_gif/mainfunction.gif', detailsLeft: '<strong>Main Features:</strong><br>- sns과 같이 글 작성 및 공유<br>- workspace를 이용한 다양한 데이터 정리<br>- WebSocket을 이용한 Watchparty', detailsRight: '<strong>Tech Stack:</strong><br>- JSP / Servlets (Java)<br>- WebSocket<br>- Oracle<br>- Summernote.js<br>- Gemini 2.5Pro', githubUrl: 'https://github.com/ungs1026/vibesync_person' },
+            '3': { title: 'Isegye Idol Shop', thumbnail: './sources/isedolshop.gif', detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 멤버 정보 제공<br>- 다양한 앨범 확인 및 필터링<br>- 굿즈 필터링 및 상세정보 제공<br>- 멤버별 다양한 음악 제공<br>- Watchparty를 이용한 공유되는 영상 재생', detailsRight: '<strong>Tech Stack:</strong><br>- PHP<br>- MySQL (phpMyAdmin)<br>- JavaScript, HTML, CSS', githubUrl: 'https://github.com/ungs1026/ISEDOL' },
+            '4': { title: 'muc', thumbnail: './sources/muc.gif', detailsLeft: '<strong>Main Features:</strong><br>- 간단한 Vue 사용법을 익히기 위한 프로젝트<br>- Library, API, CSS, Font, JS, GSAP의 정보를 정리해 놓은 도서관<br>- Font Test기능<br>- Library의 기본 기능을 Preview에서 확인 가능', detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- HTML, CSS, JS', githubUrl: 'https://github.com/ungs1026/muc' },
         };
 
         // index 페이지 스크립트
@@ -589,6 +581,7 @@
             const navButtonsContainer = document.getElementById("nav-buttons-container");
             let currentIndex = 0;
             let isAnimating = false;
+            let isModalOpen = false;
 
             const NEXT = 1;
             const PREV = -1;
@@ -678,13 +671,24 @@
 
             function preloadGif(slideElement) {
                 const imgDiv = slideElement.querySelector('.slide__img');
-                if (!imgDiv || !imgDiv.dataset.gifSrc || imgDiv.dataset.gifLoaded) return;
+                if (!imgDiv || !imgDiv.dataset.gifSrc || imgDiv.dataset.gifLoaded === 'true') return;
+                
+                imgDiv.dataset.gifLoaded = 'loading';
                 const gifSrc = imgDiv.dataset.gifSrc;
-                const img = new Image();
-                img.onload = () => {
+                let hasLoaded = false;
+
+                const swapToGif = () => {
+                    if (hasLoaded) return;
+                    hasLoaded = true;
                     imgDiv.style.backgroundImage = `url(${gifSrc})`;
                     imgDiv.dataset.gifLoaded = 'true';
+                    if (loadTimeout) clearTimeout(loadTimeout);
                 };
+
+                const loadTimeout = setTimeout(swapToGif, 3000);
+
+                const img = new Image();
+                img.onload = swapToGif;
                 img.src = gifSrc;
             }
 
@@ -732,14 +736,14 @@
             }
 
             function navigate(direction) {
-                if (isAnimating) return;
+                if (isAnimating || isModalOpen) return;
                 const prevIndex = currentIndex;
                 currentIndex = direction === NEXT ? (currentIndex + 1) % slides.length : (currentIndex - 1 + slides.length) % slides.length;
                 performNavigation(prevIndex, currentIndex);
             }
 
             function jumpToSlide(targetIndex) {
-                if (isAnimating || currentIndex === targetIndex) return;
+                if (isAnimating || isModalOpen || currentIndex === targetIndex) return;
                 performNavigation(currentIndex, targetIndex);
                 currentIndex = targetIndex;
             }
@@ -756,28 +760,37 @@
             document.addEventListener("mouseleave", () => cursor.classList.remove("active"));
             
             window.addEventListener("wheel", (e) => {
-                if (isAnimating) return;
+                if (isAnimating || isModalOpen) return;
                 if (e.deltaY > 0) navigate(NEXT);
                 else navigate(PREV);
             });
 
             let touchStartY = 0;
-            document.addEventListener("touchstart", (e) => { touchStartY = e.changedTouches[0].screenY; });
+            document.addEventListener("touchstart", (e) => { 
+                if (isModalOpen) return;
+                touchStartY = e.changedTouches[0].screenY; 
+            });
             document.addEventListener("touchend", (e) => {
-                if(isAnimating) return;
+                if(isAnimating || isModalOpen) return;
                 const touchEndY = e.changedTouches[0].screenY;
                 if (touchStartY > touchEndY + 5) navigate(NEXT);
                 else if (touchStartY < touchEndY - 5) navigate(PREV);
             });
 
             document.addEventListener("click", (e) => {
-                if(isAnimating) return;
+                if(isAnimating || isModalOpen) return;
                 if (e.target.closest("a, button")) return;
                 if (e.clientX > window.innerWidth / 2) navigate(NEXT);
                 else navigate(PREV);
             });
 
             document.addEventListener("keydown", (e) => {
+                if (e.key === 'Escape' && isModalOpen) {
+                    hideModal();
+                    return;
+                }
+                if (isAnimating || isModalOpen) return;
+
                 if (e.key === "ArrowDown" || e.key === "ArrowRight") navigate(NEXT);
                 else if (e.key === "ArrowUp" || e.key === "ArrowLeft") navigate(PREV);
             });
@@ -807,10 +820,12 @@
                     modalLink.style.display = 'none';
                 }
                 modal.classList.add('visible');
+                isModalOpen = true;
             }
 
             function hideModal() {
                 modal.classList.remove('visible');
+                isModalOpen = false;
             }
 
             document.querySelectorAll('.details-button').forEach(button => {
@@ -822,12 +837,6 @@
 
             modal.addEventListener('click', (e) => {
                 if (e.target === modal || e.target.classList.contains('modal-close-button')) {
-                    hideModal();
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('visible')) {
                     hideModal();
                 }
             });
