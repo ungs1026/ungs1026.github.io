@@ -235,8 +235,11 @@
       .slide__text { position: absolute; bottom: 5rem; left: 5rem; max-width: 80%; overflow: hidden; z-index: 5; }
       .slide__text-line { display: block; font-size: 4.5rem; line-height: 1; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; transform: translateY(100%); opacity: 0; }
       
+      .sec_section_svg {display: flex;justify-content: flex-start; align-items: center; padding: 10px; gap: 10px; font-size: min(3vw, 14px); font-weight: bold; letter-spacing: 1px;}
+      .skill_detail {font-size: min(2.6vw, 18px); text-align: center; }
+
       .controls { position: fixed; top: 2rem; right: 2rem; z-index: 10; display: flex; gap: 10px; }
-      .nav-button { background-color: transparent; border: 1px solid #fff; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s, color 0.3s; font-size: 1rem; }
+      .nav-button { background-color: transparent; border: 1px solid #fff; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s, color 0.3s; font-size: min(2vw, 12px); }
       .nav-button.active { background-color: #fff; color: #000; }
 
       .slide-counter { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; align-items: center; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; z-index: 10; }
@@ -247,11 +250,6 @@
       .counter-total { min-width: 2rem; text-align: left; }
       .slide-info { position: fixed; top: 2rem; left: 2rem; font-size: 0.8rem; font-weight: 400; opacity: 0.7; z-index: 10; max-width: 15rem; }
       .slide-info-title { margin-bottom: 0.5rem; }
-      .cursor { position: fixed; width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); margin-top: -30px; margin-left: -30px; z-index: 9999; pointer-events: none; transform: scale(0); transition: transform 0.3s ease; }
-      .cursor-arrow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; opacity: 0; }
-      .cursor.active { transform: scale(1); }
-      .cursor.prev .cursor-arrow.prev,
-      .cursor.next .cursor-arrow.next { opacity: 1; }
       
       .sns-container { display: flex; justify-content: center; align-items: center; gap: 50px; width: 100%; height: 100%; perspective: 1000px; }
       .sns-card { display: block; position: relative; width: 300px; height: 400px; color: #fff; text-decoration: none; transform-style: preserve-3d; }
@@ -265,20 +263,20 @@
       /* Modal Styles */
       .modal-overlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
       .modal-overlay.visible { opacity: 1; pointer-events: auto; }
-      .modal-content { background: #1a1a1a; padding: 30px; border-radius: 15px; max-width: 800px; width: 90%; text-align: center; transform: scale(0.9); transition: transform 0.4s ease; position: relative; max-height: 90vh; overflow-y: auto; }
+      .modal-content { font-size: min(2vw, 12px); background: #1a1a1a; padding: 30px; border-radius: 15px; max-width: 800px; width: 90%; text-align: center; transform: scale(0.9); transition: transform 0.4s ease; position: relative; max-height: 90vh; overflow-y: auto; }
       .modal-overlay.visible .modal-content { transform: scale(1); }
       .modal-close-button { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; }
       #modal-thumbnail { width: 60%; max-height: 350px; object-fit: contain; border-radius: 10px; margin-bottom: 20px; }
-      #modal-title { font-size: 2rem; margin-bottom: 20px; }
-      .modal-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; line-height: 1.6; margin-bottom: 30px; }
+      #modal-title { margin-bottom: 10px; }
+      .modal-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; line-height: 1.6; margin-bottom: 10px; }
       .modal-details-left, .modal-details-right { font-size: 1rem; }
       .modal-link { display: inline-flex; align-items: center; justify-content: center; gap: 10px; color: #fff; text-decoration: none; margin-top: 20px; padding: 10px 20px; border: 1px solid #fff; border-radius: 5px; transition: background-color 0.3s, color 0.3s; }
       .modal-link:hover { background-color: #fff; color: #000; }
       .modal-link svg { width: 20px; height: 20px; fill: currentColor; }
 
       /* Slide 1 Animation */
-      #slide1-text-container { display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; height: 100%; }
-      .char { display: inline-block; font-size: 4.5rem; font-weight: 700; }
+      #slide1-text-container { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; width: 100%; height: 100%; }
+      .char { display: inline-block; font-size: 4.5rem; font-weight: 700; font-size: min(8vw, 40px); }
 
       /* Slide 2 Layout & Animation */
       @keyframes floatAnimation {
@@ -288,45 +286,87 @@
       }
       .slide2-container { display: flex; justify-content: center; align-items: center; gap: 5rem; width: 100%; height: 100%; padding: 5rem; }
       .slide2-image { 
-          width: 300px; 
-          height: 400px; 
-          border-radius: 15px; 
-          transform-style: preserve-3d;
-          transform: rotateY(-10deg);
-          animation: floatAnimation 6s ease-in-out infinite;
+        width: 300px; 
+        height: 400px; 
+        border-radius: 15px; 
+        transform-style: preserve-3d;
+        transform: rotateY(-10deg);
+        animation: floatAnimation 6s ease-in-out infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .slide2-image:hover {
           animation-play-state: paused;
       }
-      .slide2-description { max-width: 40ch; }
+      .slide2-description { max-width: 30vw; }
       .desc-line-wrapper { overflow: hidden; margin-bottom: 1rem; }
       .desc-line { font-size: 16px; line-height: 1.4; display: block; transform: translateY(100%); }
       
       /* Responsive Styles */
       @media (max-width: 900px) {
-        .slide2-container { flex-direction: column; text-align: center; }
-        .slide2-image { width: 80%; height: 300px; }
+        .slide2-container { 
+          flex-direction: column; 
+          text-align: center; 
+          padding: 2rem; 
+          gap: 2rem;     
+          justify-content: center; 
+        }
+        .slide2-image { 
+          width: 80%; 
+          max-width: 300px; 
+          height: auto;    
+          aspect-ratio: 3 / 4; 
+        }
+        .slide2-description {max-width: 80%;}
+        .desc-line {
+          font-size: 3vw;
+          line-height: 6vw;
+        }
         .modal-details-grid { grid-template-columns: 1fr; }
+        #modal-thumbnail {width: 100%;}
       }
       @media (max-width: 768px) {
         .slide__text { bottom: 3rem; left: 2rem; max-width: 90%; }
         .slide__text-line { font-size: 3rem; }
-        .sns-container { flex-direction: column; gap: 20px; }
-        .sns-card { width: 250px; height: 320px; }
-        .sns-card-logo { width: 120px; }
+        .sns-container {  flex-direction: column;
+    gap: 25px;
+    padding: 10vh 2rem; 
+    height: auto; 
+    justify-content: center; }
+    .sns-card {
+    width: 80vw; 
+    max-width: 300px; 
+    height: auto; 
+    aspect-ratio: 16 / 9;
+}
+.sns-card-logo {
+    width: 30%;
+    max-width: 100px;
+    top: 45%;
+    left: 50%; 
+}
+.sns-card-title {
+    font-size: 1rem; 
+    bottom: 20px;
+}
       }
     </style>
 </head>
 <body>
     <div class="slideshow">
-        <div class="slide active">
-            <div id="slide1-text-container" data-text="WHAT IS SEO JAE UNG PORTFOLIO"></div>
+      <div class="slide active">
+        <div id="slide1-text-container">
+            <div class="slide1-text-line" data-text="WHAT IS"></div>
+            <div class="slide1-text-line" data-text="SEO JAE UNG"></div>
+            <div class="slide1-text-line" data-text="PORTFOLIO"></div>
         </div>
+      </div>
     
         <div class="slide">
             <div class="slide2-container">
                 <div class="slide2-image" data-tilt>
-                    <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" src="./sources/증명사진.jpg" alt="증명사진">
+                    <img style="width: 80%; height: 80%; object-fit: cover; border-radius: 15px;" src="./sources/증명사진.jpg" alt="증명사진">
                 </div>
                 <div class="slide2-description">
                     <div class="desc-line-wrapper"><span class="desc-line">'상상력'&'도전'&'지식에 대한 열정'</span></div>
@@ -340,15 +380,18 @@
         <div class="slide">
             <div class="card-container">
                 <h1 class="fluid">My Skills</h1>
-                <p>A showcase of my technical abilities and the tools I use to build modern web experiences.</p>
+                <p class="skill_detail">A showcase of my technical abilities and the tools I use to build modern web experiences.</p>
                 <ul>
                   <li data-active="true">
                     <article>
                       <h3>Main Language</h3>
-                      <p>HTML5, CSS3, JavaScript, Vue, Jsp, php, MySql, Oracle</p>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 3h12l4 6-10 13L2 9Z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" />
-                      </svg>
+                      <p style="padding-left: 10px;">HTML5, CSS3, JavaScript, Vue, Jsp, php, MySql, Oracle</p>
+                      <div class="sec_section_svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M6 3h12l4 6-10 13L2 9Z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" />
+                        </svg>
+                        <span>DEFAULT</span>
+                      </div>
                       <img src="./sources/main.png" alt="" class="card-background-img" />
                       <div class="skill-details two-columns">
                         <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
@@ -365,12 +408,15 @@
                   <li>
                     <article>
                       <h3>Front-End</h3>
-                      <p>HTML5, CSS3, JavaScript, Vue, Jsp</p>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" />
-                      </svg>
+                      <p style="padding-left: 10px;">HTML5, CSS3, JavaScript, Vue, Jsp</p>
+                      <div class="sec_section_svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" />
+                        </svg>
+                        <span>DEFAULT</span>
+                      </div>
                       <img src="./sources/front-end.jpg" alt="" class="card-background-img" />
-                       <div class="skill-details two-columns">
+                        <div class="skill-details two-columns">
                         <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
                         <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
                         <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-bar" style="width: 85%;"></div></div></div>
@@ -382,10 +428,14 @@
                   <li>
                     <article>
                       <h3>Back-End</h3>
-                      <p>php, Java</p>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                      </svg>
+                      <p style="padding-left: 10px;">php, Java</p>
+                      <div class="sec_section_svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                        </svg>
+                        <span>DEFAULT</span>
+                      </div>
+                      
                       <img src="./sources/back-end.jpg" alt="" class="card-background-img" />
                       <div class="skill-details">
                         <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div></div>
@@ -396,13 +446,16 @@
                   <li>
                     <article>
                       <h3>DB + Tools</h3>
-                      <p>MySQL, Oracle, PostgreSQL / VS Code, Eclipse, Figma</p>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 17V5a2 2 0 0 0-2-2H4" />
-                        <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
-                      </svg>
+                      <p style="padding-left: 10px;">MySQL, Oracle, PostgreSQL / VS Code, Eclipse, Figma</p>
+                      <div class="sec_section_svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M19 17V5a2 2 0 0 0-2-2H4" />
+                          <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
+                        </svg>
+                        <span>DEFAULT</span>
+                      </div>
                       <img src="./sources/DB.jpeg" alt="" class="card-background-img" />
-                       <div class="skill-details two-columns">
+                        <div class="skill-details two-columns">
                         <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 88%;"></div></div></div>
                         <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-bar" style="width: 82%;"></div></div></div>
                         <div class="skill-item"><img class="bg-white" src="./sources/icons/db/postgresq.svg" alt="PostgreSQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
@@ -456,11 +509,11 @@
            <button class="details-button" data-project-id="4"><img src="./sources/icons/info.svg" alt="Details"></button>
       </div>
 
-        <div class="slide">
+        <div class="slide" style="display: flex;">
             <div class="sns-container">
                 <a href="https://github.com/ungs1026" target="_blank" class="sns-card" data-tilt>
                     <div class="sns-card-bg"></div>
-                    <img src="./sources/icons/sns/github.svg" alt="GitHub Logo" class="sns-card-logo" style="left: 53%;">
+                    <img src="./sources/icons/sns/github.svg" alt="GitHub Logo" class="sns-card-logo">
                     <p class="sns-card-title">GITHUB</p>
                 </a>
                 <a href="https://indigo-cactus-211.notion.site/Seo-Jae-Ung-11544ca1bde680fabc88d7f0ab3c4b26" target="_blank" class="sns-card" data-tilt>
@@ -491,11 +544,6 @@
     <div class="slide-info">
         <div class="slide-info-title">Contemplative Series</div>
         <div class="slide-info-desc">Navigate through a visual journey exploring the boundaries between form and emptiness.</div>
-    </div>
-    
-    <div class="cursor">
-        <div class="cursor-arrow prev">←</div>
-        <div class="cursor-arrow next">→</div>
     </div>
 
     <div id="project-modal" class="modal-overlay">
@@ -540,7 +588,8 @@
             cardList.addEventListener("click", setCardIndex);
             cardList.addEventListener("pointermove", setCardIndex);
 
-            const skillIcons = cardList.querySelectorAll('article > svg');
+            const skillIcons = cardList.querySelectorAll('.sec_section_svg'); 
+
             skillIcons.forEach(icon => {
                 icon.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -549,7 +598,7 @@
                         article.classList.toggle('details-active');
                     }
                 });
-            });
+            })
             
             if (cardItems.length > 0 && cardItems[0]) {
                 const firstP = cardItems[0].querySelector('article p');
@@ -576,7 +625,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             const slides = document.querySelectorAll(".slide");
             const counterStrip = document.querySelector(".counter-strip");
-            const cursor = document.querySelector(".cursor");
             const counterTotal = document.querySelector(".counter-total");
             const navButtonsContainer = document.getElementById("nav-buttons-container");
             let currentIndex = 0;
@@ -628,29 +676,37 @@
             initNavButtons();
 
             function animateSlide1Text() {
-                const textContainer = document.getElementById('slide1-text-container');
-                if (!textContainer || textContainer.dataset.animated) return;
-                
-                const text = textContainer.dataset.text;
-                textContainer.innerHTML = '';
-                text.split('').forEach(char => {
-                    const span = document.createElement('span');
-                    span.className = 'char';
-                    span.textContent = char === ' ' ? '\u00A0' : char;
-                    textContainer.appendChild(span);
-                });
+              const textContainer = document.getElementById('slide1-text-container');
+              if (!textContainer || textContainer.dataset.animated) return;
 
-                gsap.from(".char", {
-                    opacity: 0,
-                    y: () => gsap.utils.random(-200, 200),
-                    x: () => gsap.utils.random(-300, 300),
-                    scale: () => gsap.utils.random(0.5, 1.5),
-                    rotation: () => gsap.utils.random(-180, 180),
-                    duration: 1,
-                    ease: "power2.out",
-                    stagger: 0.03
+              const textLines = textContainer.querySelectorAll('.slide1-text-line');
+              let allChars = []; // 모든 글자를 담을 배열
+
+              // 각 라인에 대해 반복
+              textLines.forEach(line => {
+                const text = line.dataset.text;
+                line.innerHTML = ''; // 라인 비우기
+                text.split('').forEach(char => {
+                  const span = document.createElement('span');
+                  span.className = 'char';
+                  span.textContent = char === ' ' ? '\u00A0' : char;
+                  line.appendChild(span);
+                  allChars.push(span); // 생성된 글자(span)를 배열에 추가
                 });
-                textContainer.dataset.animated = 'true';
+              });
+
+              // 모든 글자에 대해 한 번에 애니메이션 적용
+              gsap.from(allChars, {
+                opacity: 0,
+                y: () => gsap.utils.random(-200, 200),
+                x: () => gsap.utils.random(-300, 300),
+                scale: () => gsap.utils.random(0.5, 1.5),
+                rotation: () => gsap.utils.random(-180, 180),
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.03
+              });
+              textContainer.dataset.animated = 'true';
             }
             animateSlide1Text();
 
@@ -748,23 +804,6 @@
                 currentIndex = targetIndex;
             }
 
-            document.addEventListener("mousemove", (e) => {
-                gsap.to(cursor, { left: e.clientX, top: e.clientY, duration: 0.1 });
-                cursor.classList.add("active");
-                if (e.clientX < window.innerWidth / 2) { cursor.classList.remove("next"); cursor.classList.add("prev"); } 
-                else { cursor.classList.remove("prev"); cursor.classList.add("next"); }
-                clearTimeout(window.cursorTimeout);
-                window.cursorTimeout = setTimeout(() => cursor.classList.remove("active"), 2000);
-            });
-
-            document.addEventListener("mouseleave", () => cursor.classList.remove("active"));
-            
-            window.addEventListener("wheel", (e) => {
-                if (isAnimating || isModalOpen) return;
-                if (e.deltaY > 0) navigate(NEXT);
-                else navigate(PREV);
-            });
-
             let touchStartY = 0;
             document.addEventListener("touchstart", (e) => { 
                 if (isModalOpen) return;
@@ -775,13 +814,6 @@
                 const touchEndY = e.changedTouches[0].screenY;
                 if (touchStartY > touchEndY + 5) navigate(NEXT);
                 else if (touchStartY < touchEndY - 5) navigate(PREV);
-            });
-
-            document.addEventListener("click", (e) => {
-                if(isAnimating || isModalOpen) return;
-                if (e.target.closest("a, button")) return;
-                if (e.clientX > window.innerWidth / 2) navigate(NEXT);
-                else navigate(PREV);
             });
 
             document.addEventListener("keydown", (e) => {
@@ -795,7 +827,16 @@
                 else if (e.key === "ArrowUp" || e.key === "ArrowLeft") navigate(PREV);
             });
 
-            VanillaTilt.init(document.querySelectorAll(".sns-card"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
+            window.addEventListener("wheel", (e) => {
+              if (isAnimating || isModalOpen) return;
+              if (e.deltaY > 0) navigate(NEXT);
+              else navigate(PREV);
+            });
+
+            if (window.innerWidth > 768) {
+              VanillaTilt.init(document.querySelectorAll(".sns-card"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
+            }            
+            
             VanillaTilt.init(document.querySelector(".slide2-image"), { max: 15, speed: 400, glare: true, "max-glare": 0.5 });
 
             const modal = document.getElementById('project-modal');
