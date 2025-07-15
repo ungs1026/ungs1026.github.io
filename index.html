@@ -5,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="shortcut icon" href="sources/favicon.ico">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="SJU Portfolio" />
+    <meta name="description" content="This is a site to introduce the sites I have made so far and who I am." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ungs1026.github.io/" />
+    <meta property="og:title" content="SJU Portfolio" />
+    <meta property="og:description" content="Who is Seo Jae-Ung? Let me tell you what sites and technologies are available." />
+    <meta property="og:image" content="./sources/card.png" />
+
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ungs1026.github.io/" />
+    <meta property="twitter:title" content="SJU Portfolio" />
+    <meta property="twitter:description" content="Who is Seo Jae-Ung? Let me tell you what sites and technologies are available." />
+    <meta property="twitter:image" content="./sources/card.png" />
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
     <style>
       /* card 페이지 스타일 시작 */
       @import url("https://unpkg.com/normalize.css") layer(normalize);
@@ -43,7 +67,7 @@
           width: 74ch;
           max-width: calc(100% - 4rem);
           text-wrap: balance;
-          font-family: monospace;
+          font-family: "Rubik", sans-serif;
           margin-bottom: 4rem;
           line-height: 1.5;
           opacity: 0.8;
@@ -85,7 +109,7 @@
           width: calc(var(--article-width) * 1px);
           height: 100%;
           position: absolute;
-          font-family: monospace;
+          font-family: "Rubik", sans-serif;
           top: 0;
           left: 0;
           display: flex;
@@ -108,7 +132,7 @@
           font-size: 1rem;
           font-weight: 300;
           text-transform: uppercase;
-          font-family: monospace;
+          font-family: "Rubik", sans-serif;
         }
         .card-container article svg {
           width: 24px;
@@ -221,16 +245,16 @@
       /* card 페이지 스타일 끝 */
 
       /* index 페이지 스타일 시작 */
-      @font-face { src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2"); font-family: "PP Neue Montreal", sans-serif; font-weight: 400; }
+      @font-face { src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2"); font-family: "Rubik", sans-serif; font-weight: 400; }
       *,
       *:before,
       *:after { margin: 0; padding: 0; box-sizing: border-box; }
       html { font-size: calc(100vw / 1512 * 10); }
-      body { font-family: "PP Neue Montreal", sans-serif; background-color: #000; color: #fff; height: 100vh; overflow: hidden; }
+      body { font-family: "Rubik", sans-serif; background-color: #000; color: #fff; height: 100vh; overflow: hidden; }
       .slideshow { position: relative; width: 100%; height: 100vh; overflow: hidden; }
       .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden; overflow: hidden; transform: translateY(0); }
       .slide.active { visibility: visible; }
-      .slide__img { opacity: 50%; position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background-size: cover; background-position: center; will-change: transform; transition: background-image 0.5s ease-in-out; }
+      .slide__img { opacity: 50%; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; will-change: transform; transition: background-image 0.5s ease-in-out; }
       .slide__img::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient( to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 40% ); }
       .slide__text { position: absolute; bottom: 5rem; left: 5rem; max-width: 80%; overflow: hidden; z-index: 5; }
       .slide__text-line { display: block; font-size: 4.5rem; line-height: 1; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; transform: translateY(100%); opacity: 0; }
@@ -254,7 +278,7 @@
       .sns-container { display: flex; justify-content: center; align-items: center; gap: 50px; width: 100%; height: 100%; perspective: 1000px; }
       .sns-card { display: block; position: relative; width: 300px; height: 400px; color: #fff; text-decoration: none; transform-style: preserve-3d; }
       .sns-card-bg { position: absolute; inset: 0; background: #222; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-      .sns-card-logo { position: absolute; top: 44%; left: 47%; width: 150px; transform: translate(-50%, -50%) translateZ(60px); filter: invert(1); }
+      .sns-card-logo { position: absolute; top: 44%; left: 50%; width: 150px; transform: translate(-50%, -50%) translateZ(60px); filter: invert(1); }
       .sns-card-title { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%) translateZ(40px); font-size: 1.2rem; font-weight: bold; }
       .bg-white {background: #fff;}
       .details-button { position: absolute; bottom: 2rem; right: 2rem; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; background: none; border: none; }
@@ -390,7 +414,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path d="M6 3h12l4 6-10 13L2 9Z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" />
                         </svg>
-                        <span>DEFAULT</span>
+                        <span>Detail</span>
                       </div>
                       <img src="./sources/main.png" alt="" class="card-background-img" />
                       <div class="skill-details two-columns">
@@ -413,7 +437,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" />
                         </svg>
-                        <span>DEFAULT</span>
+                        <span>DETAIL</span>
                       </div>
                       <img src="./sources/front-end.jpg" alt="" class="card-background-img" />
                         <div class="skill-details two-columns">
@@ -433,7 +457,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
                         </svg>
-                        <span>DEFAULT</span>
+                        <span>DETAIL</span>
                       </div>
                       
                       <img src="./sources/back-end.jpg" alt="" class="card-background-img" />
@@ -452,7 +476,7 @@
                           <path d="M19 17V5a2 2 0 0 0-2-2H4" />
                           <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" />
                         </svg>
-                        <span>DEFAULT</span>
+                        <span>DETAIL</span>
                       </div>
                       <img src="./sources/DB.jpeg" alt="" class="card-background-img" />
                         <div class="skill-details two-columns">
@@ -477,7 +501,7 @@
             <div class="slide__img" style="background-image: url(./sources/thumbnail/isedolinfo.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/isedolinfo.gif" data-project-id="1"></div>
             <div class="slide__text">
                 <span class="slide__text-line">PORTFOLIO</span>
-                <span class="slide__text-line">First - Isegye Idol Dom Info [ Vue 3, Supabase ]</span>
+                <span class="slide__text-line">1st - Isegye Idol Dom Info [ Vue 3, Supabase ]</span>
             </div>
             <button class="details-button" data-project-id="1"><img src="./sources/icons/info.svg" alt="Details"></button>
         </div>
@@ -486,7 +510,7 @@
             <div class="slide__img" style="background-image: url(./sources/thumbnail/vibesync.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/vibesync_gif/mainfunction.gif" data-project-id="2"></div>
             <div class="slide__text">
                 <span class="slide__text-line">PORTFOLIO</span>
-                <span class="slide__text-line">Second - vibesync [ JSP, Java ]</span>
+                <span class="slide__text-line">2nd - vibesync [ JSP, Java ]</span>
             </div>
              <button class="details-button" data-project-id="2"><img src="./sources/icons/info.svg" alt="Details"></button>
         </div>
@@ -495,7 +519,7 @@
              <div class="slide__img" style="background-image: url(./sources/thumbnail/isedolshop.jpg); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/isedolshop.gif" data-project-id="3"></div>
             <div class="slide__text">
                 <span class="slide__text-line">PORTFOLIO</span>
-                <span class="slide__text-line">Third - Isegye idol shop [ php, mysql (phpMyAdmin) ] </span>
+                <span class="slide__text-line">3rd - Isegye idol shop [ php, phpMyAdmin ] </span>
             </div>
              <button class="details-button" data-project-id="3"><img src="./sources/icons/info.svg" alt="Details"></button>
         </div>
@@ -504,9 +528,18 @@
           <div class="slide__img" style="background-image: url(./sources/thumbnail/muc.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/muc.gif" data-project-id="4"></div>
           <div class="slide__text">
               <span class="slide__text-line">PORTFOLIO</span>
-              <span class="slide__text-line">Fourth - muc [ Vue3 ]</span>
+              <span class="slide__text-line">4th - muc [ Vue3 ]</span>
           </div>
            <button class="details-button" data-project-id="4"><img src="./sources/icons/info.svg" alt="Details"></button>
+      </div>
+
+        <div class="slide">
+          <div class="slide__img" style="background-image: url(./sources/thumbnail/lsa.png); background-repeat: no-repeat; background-size: contain;" data-gif-src="./sources/lsa.mp4" data-project-id="5"></div>
+          <div class="slide__text">
+              <span class="slide__text-line">PORTFOLIO</span>
+              <span class="slide__text-line">5th - LSA (Lostark Story Archives) [ React ]</span>
+          </div>
+          <button class="details-button" data-project-id="5"><img src="./sources/icons/info.svg" alt="Details"></button>
       </div>
 
         <div class="slide" style="display: flex;">
@@ -538,7 +571,7 @@
             </div>
         </div>
         <div class="counter-separator"></div>
-        <div class="counter-total">08</div>
+        <div class="counter-total">09</div>
     </div>
     
     <div class="slide-info">
@@ -619,6 +652,7 @@
             '2': { title: 'vibesync', thumbnail: './sources/vibesync_gif/mainfunction.gif', detailsLeft: '<strong>Main Features:</strong><br>- sns과 같이 글 작성 및 공유<br>- workspace를 이용한 다양한 데이터 정리<br>- WebSocket을 이용한 Watchparty', detailsRight: '<strong>Tech Stack:</strong><br>- JSP / Servlets (Java)<br>- WebSocket<br>- Oracle<br>- Summernote.js<br>- Gemini 2.5Pro', githubUrl: 'https://github.com/ungs1026/vibesync_person' },
             '3': { title: 'Isegye Idol Shop', thumbnail: './sources/isedolshop.gif', detailsLeft: '<strong>Main Features:</strong><br>- 이세계 아이돌 멤버 정보 제공<br>- 다양한 앨범 확인 및 필터링<br>- 굿즈 필터링 및 상세정보 제공<br>- 멤버별 다양한 음악 제공<br>- Watchparty를 이용한 공유되는 영상 재생', detailsRight: '<strong>Tech Stack:</strong><br>- PHP<br>- MySQL (phpMyAdmin)<br>- JavaScript, HTML, CSS', githubUrl: 'https://github.com/ungs1026/ISEDOL' },
             '4': { title: 'muc', thumbnail: './sources/muc.gif', detailsLeft: '<strong>Main Features:</strong><br>- 간단한 Vue 사용법을 익히기 위한 프로젝트<br>- Library, API, CSS, Font, JS, GSAP의 정보를 정리해 놓은 도서관<br>- Font Test기능<br>- Library의 기본 기능을 Preview에서 확인 가능', detailsRight: '<strong>Tech Stack:</strong><br>- Vue 3<br>- HTML, CSS, JS', githubUrl: 'https://github.com/ungs1026/muc' },
+            '5': { title: 'muc', thumbnail: './sources/thumbnail/lsa.png', detailsLeft: '<strong>Main Features:</strong><br>- 간단한 React 사용법을 익히기 위한 프로젝트<br>- 다양한 라이브러리와 Interaction을 구현한 페이지<br>- JS와 Supabase를 이용한 데이터 관리<br>- 로스트아크 사이트 및 InGame 구조를 디자인으로 사용하여 이용자 UX 개선', detailsRight: '<strong>Tech Stack:</strong><br>- React<br>- HTML, CSS, JS<br>- Supabase', githubUrl: 'https://github.com/ungs1026/LSA' },
         };
 
         // index 페이지 스크립트
@@ -727,6 +761,34 @@
 
             function preloadGif(slideElement) {
                 const imgDiv = slideElement.querySelector('.slide__img');
+
+                if (imgDiv && imgDiv.dataset.projectId === '5' && imgDiv.dataset.gifSrc) {
+                  const videoSrc = imgDiv.dataset.gifSrc;
+                  let swapped = false;
+                  const swapToVideo = () => {
+                      if (swapped) return;
+                      swapped = true;
+                      const video = document.createElement('video');
+                      video.src = videoSrc;
+                      video.autoplay = true;
+                      video.loop = true;
+                      video.muted = true;
+                      video.playsInline = true;
+                      video.style.width = '100%';
+                      video.style.height = '100%';
+                      video.style.objectFit = 'cover';
+                      imgDiv.innerHTML = '';
+                      imgDiv.appendChild(video);
+                      clearTimeout(loadTimeout);
+                  };
+                  const loadTimeout = setTimeout(swapToVideo, 3000);
+                  const pre = document.createElement('video');
+                  pre.src = videoSrc;
+                  pre.preload = 'auto';
+                  pre.onloadeddata = swapToVideo;
+                  return;
+                }
+
                 if (!imgDiv || !imgDiv.dataset.gifSrc || imgDiv.dataset.gifLoaded === 'true') return;
                 
                 imgDiv.dataset.gifLoaded = 'loading';
