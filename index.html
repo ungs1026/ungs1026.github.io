@@ -190,6 +190,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80%;
+            height: 70%;
             background: transparent;
             padding: 1rem; 
             display: grid; 
@@ -210,15 +211,16 @@
         }
         .skill-item { display: flex; align-items: center; gap: 10px; }
         .skill-item img { 
-            width: 24px; 
-            height: 24px; 
+            width: 32px; 
+            height: 32px; 
             filter: none !important; 
             scale: 1 !important; 
             object-fit: contain;
             border-radius: 50%;
         }
-        .progress-bar-container { flex-grow: 1; background-color: #444; border-radius: 5px; overflow: hidden; height: 8px; }
+        .progress-bar-container { flex-grow: 1; background-color: #444; border-radius: 5px; overflow: hidden; height: 12px; position: relative; }
         .progress-bar { background-color: #fff; height: 100%; border-radius: 5px; }
+        .progress-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black; font-size: 10px; font-weight: bold; width: 100%; text-align: center; text-shadow: 0 0 3px white, 0 0 3px white; z-index: 1; }
       }
       @layer base {
         :root {
@@ -259,7 +261,7 @@
       .slide__text { position: absolute; bottom: 5rem; left: 5rem; max-width: 80%; overflow: hidden; z-index: 5; }
       .slide__text-line { display: block; font-size: 4.5rem; line-height: 1; font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; transform: translateY(100%); opacity: 0; }
       
-      .sec_section_svg {display: flex;justify-content: flex-start; align-items: center; padding: 10px; gap: 10px; font-size: min(3vw, 14px); font-weight: bold; letter-spacing: 1px;}
+      .sec_section_svg {display: flex;justify-content: flex-start; align-items: center; padding: 10px; gap: 10px; font-size: min(3vw, 14px); font-weight: bold; letter-spacing: 1px; cursor: pointer;}
       .skill_detail {font-size: min(2.6vw, 18px); text-align: center; }
 
       .controls { position: fixed; top: 2rem; right: 2rem; z-index: 10; display: flex; gap: 10px; }
@@ -303,25 +305,29 @@
       .char { display: inline-block; font-size: 4.5rem; font-weight: 700; font-size: min(8vw, 40px); }
 
       /* Slide 2 Layout & Animation */
-      @keyframes floatAnimation {
-        0% { transform: translateY(0) rotateY(-10deg); }
-        50% { transform: translateY(-15px) rotateY(-10deg); }
-        100% { transform: translateY(0) rotateY(-10deg); }
+      .slide2-container { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        gap: 5rem; 
+        width: 100%; 
+        height: 100%; 
+        padding: 5rem; 
+        perspective: 1000px;
       }
-      .slide2-container { display: flex; justify-content: center; align-items: center; gap: 5rem; width: 100%; height: 100%; padding: 5rem; }
       .slide2-image { 
         width: 300px; 
         height: 400px; 
         border-radius: 15px; 
         transform-style: preserve-3d;
-        transform: rotateY(-10deg);
-        animation: floatAnimation 6s ease-in-out infinite;
         display: flex;
         justify-content: center;
         align-items: center;
+        background: #222;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       }
-      .slide2-image:hover {
-          animation-play-state: paused;
+      .slide2-image img {
+        transform: translateZ(40px);
       }
       .slide2-description { max-width: 30vw; }
       .desc-line-wrapper { overflow: hidden; margin-bottom: 1rem; }
@@ -418,14 +424,14 @@
                       </div>
                       <img src="./sources/main.png" alt="" class="card-background-img" />
                       <div class="skill-details two-columns">
-                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-bar" style="width: 85%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 88%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-bar" style="width: 82%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 90%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 85%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 75%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 70%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 88%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 82%;"></div></div></div>
                       </div>
                     </article>
                   </li>
@@ -441,11 +447,11 @@
                       </div>
                       <img src="./sources/front-end.jpg" alt="" class="card-background-img" />
                         <div class="skill-details two-columns">
-                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-bar" style="width: 85%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/html.svg" alt="HTML5"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/css.svg" alt="CSS3"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 90%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/js.svg" alt="JavaScript"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 85%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/front/vue.svg" alt="Vue"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/jsp.svg" alt="JSP"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 75%;"></div></div></div>
                       </div>
                     </article>
                   </li>
@@ -462,8 +468,8 @@
                       
                       <img src="./sources/back-end.jpg" alt="" class="card-background-img" />
                       <div class="skill-details">
-                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-bar" style="width: 70%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/java.svg" alt="Java"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/back/php.svg" alt="PHP"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 70%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/back/java.svg" alt="Java"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 80%;"></div></div></div>
                       </div>
                     </article>
                   </li>
@@ -480,12 +486,12 @@
                       </div>
                       <img src="./sources/DB.jpeg" alt="" class="card-background-img" />
                         <div class="skill-details two-columns">
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 88%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-bar" style="width: 82%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/postgresq.svg" alt="PostgreSQL"><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div></div>
-                        <div class="skill-item"><img src="./sources/icons/tool/vscode.svg" alt="VS Code"><div class="progress-bar-container"><div class="progress-bar" style="width: 95%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/eclipse.svg" alt="Eclipse"><div class="progress-bar-container"><div class="progress-bar" style="width: 80%;"></div></div></div>
-                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/figma.svg" alt="Figma"><div class="progress-bar-container"><div class="progress-bar" style="width: 90%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/mysql.svg" alt="MySQL"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 88%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/db/oracle.svg" alt="Oracle"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 82%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/db/postgresq.svg" alt="PostgreSQL"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 75%;"></div></div></div>
+                        <div class="skill-item"><img src="./sources/icons/tool/vscode.svg" alt="VS Code"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 95%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/eclipse.svg" alt="Eclipse"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 80%;"></div></div></div>
+                        <div class="skill-item"><img class="bg-white" src="./sources/icons/tool/figma.svg" alt="Figma"><div class="progress-bar-container"><div class="progress-label"></div><div class="progress-bar" style="width: 90%;"></div></div></div>
                       </div>
                     </article>
                   </li>
@@ -644,6 +650,15 @@
             };
             window.addEventListener("resize", cardResync);
             cardResync();
+
+            document.querySelectorAll('.progress-bar-container').forEach(container => {
+                const progressBar = container.querySelector('.progress-bar');
+                const progressLabel = container.querySelector('.progress-label');
+                if (progressBar && progressLabel) {
+                    const width = progressBar.style.width;
+                    progressLabel.textContent = width;
+                }
+            });
         }
 
         // Project Modal 데이터
@@ -899,7 +914,7 @@
               VanillaTilt.init(document.querySelectorAll(".sns-card"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
             }            
             
-            VanillaTilt.init(document.querySelector(".slide2-image"), { max: 15, speed: 400, glare: true, "max-glare": 0.5 });
+            VanillaTilt.init(document.querySelector(".slide2-image"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
 
             const modal = document.getElementById('project-modal');
             const modalTitle = document.getElementById('modal-title');
